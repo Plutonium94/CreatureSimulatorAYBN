@@ -4,9 +4,7 @@ import static commons.Utils.filter;
 
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import simulator.EnergyPoint;
@@ -74,23 +72,35 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	}
 	
 	@Override
+	/***
+	 * Renvoie une liste fixe des points d'energie reparties au hasard
+	 */
 	public Iterable<EnergyPoint> getEnergyPoints() {
-		//EnergyPoint centralEnergyPoint = new EnergyPoint(this, new Point2D.Float(0f,0f));
-		ArrayList<EnergyPoint> res = new ArrayList<>();
-		/*res.add(centralEnergyPoint);
-		double[] pointCoordinates = new double[]{-size.getWidth()/8, -size.getHeight()/8, size.getWidth()/8,-size.getHeight()/8, -size.getWidth()/8,size.getHeight()/8, size.getWidth()/8,size.getHeight()/8};  
-		for(int i=0; i<pointCoordinates.length-1; i+=2) {
-			res.add(new EnergyPoint(this, new Point2D.Double(pointCoordinates[i], pointCoordinates[i+1])));
-		}*/
-		/*for(int i = 0; i < 5; i++) {
-			res.add(new EnergyPoint(this, new Point2D.Double(Utils.getRandom(-size.getWidth()/4, size.getWidth()/4), Utils.getRandom(-size.getHeight()/4, size.getHeight()/4))));
-		}*/
 		return energyPoints;
 	}
 	
 	
 	public int creatureSize() {
 		return actionables.size();
+	}
+	
+	/***
+	 * Returns the position of the nearest energy point of the creature given as argument
+	 * @param creature
+	 * @return 
+	 */
+	public Point2D getNearestEnergyPointCoordinates(ICreature creature) {
+		EnergyPoint nearestEnergyPoint = null;
+		double minDistance = Double.POSITIVE_INFINITY;
+		Point2D creatureCoordinates = creature.getPosition();
+		for(EnergyPoint ep :this.energyPoints) {
+			double newDistance = creatureCoordinates.distance(ep.getPosition()); 
+			if(newDistance < minDistance) {
+				minDistance = newDistance;
+				nearestEnergyPoint = ep;
+			}
+		}
+		return nearestEnergyPoint.getPosition();
 	}
 	
 	public void addCreature(ICreature creature) {

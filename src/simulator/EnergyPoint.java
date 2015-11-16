@@ -58,6 +58,10 @@ public class EnergyPoint implements IDrawable {
 		return size;
 	}
 	
+	public Point2D getPosition() {
+		return position;
+	}
+	
 	
 	@Override
 	public String toString() {
