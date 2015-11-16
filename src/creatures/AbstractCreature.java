@@ -53,6 +53,8 @@ public abstract class AbstractCreature implements ICreature {
 
 	/** Size of the creature in pixels */
 	protected final int size = DEFAULT_SIZE;
+	protected double energy = 100 ;
+	protected boolean isalive = true ;
 
 	public AbstractCreature(IEnvironment environment, Point2D position) {
 		this.environment = environment;
@@ -103,6 +105,23 @@ public abstract class AbstractCreature implements ICreature {
 	@Override
 	public int getSize() {
 		return size;
+	}
+	
+	@Override
+	public double getEnergy(){
+		return energy;
+	}
+	
+	@Override
+	public void setEnergy( double energy){
+		this.energy = energy;
+		
+	}
+	public boolean IsAlive(){
+		return isalive ;
+	}
+	public void setAlive(boolean isalive){
+		this.isalive = isalive;
 	}
 
 	@Override
