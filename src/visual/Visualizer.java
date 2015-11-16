@@ -33,7 +33,6 @@ public abstract class Visualizer extends JPanel {
 		for (IDrawable d : getDrawables()) {
 			// save transformation for each drawable
 			AffineTransform cT = g2.getTransform();
-			System.out.println(d);
 			d.paint(g2);
 
 			// restore transformation

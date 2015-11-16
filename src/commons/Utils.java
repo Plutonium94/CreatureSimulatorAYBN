@@ -1,10 +1,13 @@
 package commons;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Collection;
 import java.util.List;
 
 public class Utils {
+	
+	private static Random rand = new Random();
 
 	public interface Predicate<T> {
 		public boolean apply(T input);
@@ -68,6 +71,14 @@ public class Utils {
 				return a + sep + b;
 			}
 		}, head);
+	}
+	
+	public static int getRandom( int min, int max) {
+		return rand.nextInt((max - min) + 1) + min;
+	}
+	
+	public static int getRandom(double min, double max) {
+		return getRandom((int)min, (int)max);
 	}
 	
 	private Utils() {
