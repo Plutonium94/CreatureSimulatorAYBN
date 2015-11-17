@@ -93,8 +93,8 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 		EnergyPoint nearestEnergyPoint = null;
 		double minDistance = Double.POSITIVE_INFINITY;
 		Point2D creatureCoordinates = creature.getPosition();
-		for(EnergyPoint ep :this.energyPoints) {
-			double newDistance = creatureCoordinates.distance(ep.getPosition()); 
+		for(EnergyPoint ep :this.getEnergyPoints()) {
+			double newDistance = creatureCoordinates.distance(ep.getPosition());
 			if(newDistance < minDistance) {
 				minDistance = newDistance;
 				nearestEnergyPoint = ep;
