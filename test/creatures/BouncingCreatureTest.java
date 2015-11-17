@@ -9,8 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 import creatures.visual.CreatureSimulator;
 
