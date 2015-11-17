@@ -16,6 +16,10 @@ public class EnergyPoint implements IDrawable {
 	
 	protected static final int size = 50;
 	
+	public static final int DEFAULT_ENERGY = 40;
+	
+	private int energy = DEFAULT_ENERGY;
+	
 	private static final Color color = new Color(255,165,0,128);
 	
 	public EnergyPoint(IEnvironment environment, Point2D position) {
@@ -52,6 +56,17 @@ public class EnergyPoint implements IDrawable {
 	public Color getColor() {
 		return color;
 	}
+	
+	
+	public int getEnergy() {
+		return energy;
+	}
+	
+	public void setEnergy(int energy) {
+		this.energy = energy;
+	}
+	
+	
 	
 	@Override
 	public int getSize() {

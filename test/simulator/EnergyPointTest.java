@@ -65,6 +65,13 @@ public class EnergyPointTest {
 		}
 	}
 	
+	@Test
+	public void testGetEnergy() {
+		assertEquals( EnergyPoint.DEFAULT_ENERGY, ep1.getEnergy());
+		ep1.setEnergy(7);
+		assertEquals(7, ep1.getEnergy());
+	}
+	
 	@Ignore
 	public void testNearestEnergyPoint() {
 		assertEquals(4, energyPointList.size());
