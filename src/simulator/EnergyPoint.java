@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.*;
 
+import creatures.ICreature;
 import creatures.IEnvironment;
 import visual.*;
 
@@ -50,6 +51,15 @@ public class EnergyPoint implements IDrawable {
 		g2.translate(-size / 2, -size / 2);
 		g2.setColor(color);
 		g2.fillOval((int)position.getX(), (int)position.getY(), size, size);
+	}
+	
+	
+	public boolean isInVicinity(ICreature creature) {
+		return getPosition().distance(creature.getPosition()) <= getSize();
+	}
+	
+	public void energize(ICreature creature) {
+		
 	}
 	
 	@Override

@@ -23,6 +23,8 @@ public abstract class AbstractCreature implements ICreature {
 
 	public static final int DEFAULT_SIZE = 80;
 	public static final int DEFAULT_VISION_DISTANCE = 50;
+	public static final double MAX_ENERGY = 100;
+	public static final double MIN_ENERGY = 0;
 
 	/**
 	 * The field of view (FOV) is the extent of the observable world that is
@@ -53,7 +55,7 @@ public abstract class AbstractCreature implements ICreature {
 
 	/** Size of the creature in pixels */
 	protected final int size = DEFAULT_SIZE;
-	protected double energy = 100 ;
+	protected double energy = MAX_ENERGY ;
 	protected boolean isalive = true ;
 
 	public AbstractCreature(IEnvironment environment, Point2D position) {
@@ -114,7 +116,13 @@ public abstract class AbstractCreature implements ICreature {
 	
 	@Override
 	public void setEnergy( double energy){
-		this.energy = energy;
+		if(energy <= MIN_ENERGY) {
+			this.energy = MIN_ENERGY;
+		} else if(energy >= MAX_ENERGY) {
+			this.energy = MAX_ENERGY;
+		} else {
+			this.energy = energy;
+		}
 		
 	}
 	public boolean IsAlive(){
