@@ -18,7 +18,9 @@ import java.util.List;
 
 import commons.Utils.Predicate;
 
-
+/***
+ * @author Daniel
+ */
 public abstract class AbstractCreature implements ICreature {
 
 	public static final int DEFAULT_SIZE = 80;
@@ -63,6 +65,13 @@ public abstract class AbstractCreature implements ICreature {
 
 		setPosition(position);
 	}
+	
+	/*public AbstractCreature(IEnvironment environment, Point2D position, double speed, double direction, Color color) {
+		this(environment, position);
+		this.speed = speed;
+		this.direction = direction;
+		this.color = color;
+	}*/
 
 	// ----------------------------------------------------------------------------
 	// Getters and Setters

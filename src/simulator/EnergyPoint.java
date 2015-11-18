@@ -59,7 +59,7 @@ public class EnergyPoint implements IDrawable {
 	}
 	
 	public void energize(ICreature creature) {
-		
+		creature.setEnergy(creature.getEnergy() + this.getEnergy());
 	}
 	
 	@Override
