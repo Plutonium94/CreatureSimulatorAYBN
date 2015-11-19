@@ -19,7 +19,7 @@ import java.awt.Color;
 public class EnergySearchingCreature extends AbstractCreature {
 	
 	public static double reduceEnergyFactor = 0.2;
-	public static int gainEnergyFactor = 40;
+	public static int gainEnergyFactor = 60;
 
 	public EnergySearchingCreature(IEnvironment environment, Point2D position, double speed, double direction, Color color) {
 		super(environment, position);
@@ -34,7 +34,7 @@ public class EnergySearchingCreature extends AbstractCreature {
 			this.setAlive(false); // mourir sans energie
 			return;
 		}
-		if(this.getEnergy() <= 50) {
+		if(this.getEnergy() <= 70) {
 			CreatureSimulator environment = (CreatureSimulator)getEnvironment();
 			EnergyPoint nearestEnergyPoint = environment.getNearestEnergyPoint(this);
 			beEnergized(nearestEnergyPoint);
@@ -46,14 +46,12 @@ public class EnergySearchingCreature extends AbstractCreature {
 		} else {
 			this.move(3, 3);
 		}
-<<<<<<< HEAD
-		this.setEnergy(this.getEnergy()-10);
-		//this.color = cyanify(getColor());
-=======
+
+		
 		this.setEnergy(this.getEnergy()-reduceEnergyFactor);
 		//this.color = cyanify(getColor());
 		cyanify();
->>>>>>> bf5e7b38685df0e82818c64949a02f950029b554
+
 	}
 	
 	public boolean beEnergized(EnergyPoint ep) {
@@ -68,18 +66,18 @@ public class EnergySearchingCreature extends AbstractCreature {
 	
 	public void redden() {
 		double increaseColor = gainEnergyFactor * 2.55; 
-		int g = Math.max(0,(int)(color.getGreen() - increaseColor));
-		int b = Math.max(0, (int)(color.getBlue() - increaseColor));
-		int r = Math.min(255, (int)(color.getRed() + increaseColor));
+		int g = Math.max(0,(int)Math.round(color.getGreen() - increaseColor));
+		int b = Math.max(0, (int)Math.round(color.getBlue() - increaseColor));
+		int r = Math.min(255, (int)Math.round(color.getRed() + increaseColor));
 		Color res = new Color(r,g, b);
 		color =  res;
 	}
 	
 	public void cyanify() {
 		double decreaseColor = reduceEnergyFactor * 2.55;
-		int g = Math.min(255, (int)(color.getGreen() + decreaseColor));
-		int b = Math.min(255, (int)(color.getBlue() + decreaseColor));
-		int r = Math.max(0, (int)(color.getRed() - decreaseColor));
+		int g = Math.min(255, (int)Math.round(color.getGreen() + decreaseColor));
+		int b = Math.min(255, (int)Math.round(color.getBlue() + decreaseColor));
+		int r = Math.max(0, (int)Math.round(color.getRed() - decreaseColor));
 		Color res = new Color(r,g,b);
 		color = res;
 	}
@@ -87,18 +85,19 @@ public class EnergySearchingCreature extends AbstractCreature {
 	
 	static Color redden(Color c) {
 		double increaseColor = gainEnergyFactor * 2.55; 
-		int g = Math.max(0,(int)(c.getGreen() - increaseColor));
-		int b = Math.max(0, (int)(c.getBlue() - increaseColor));
-		int r = Math.min(255, (int)(c.getRed() + increaseColor));
+		int g = Math.max(0,(int)Math.round(c.getGreen() - increaseColor));
+		int b = Math.max(0, (int)Math.round(c.getBlue() - increaseColor));
+		int r = Math.min(255, (int)Math.round(c.getRed() + increaseColor));
 		Color res = new Color(r,g, b);
 		return res;
 	}
 	
 	static Color cyanify(Color c) {
 		double decreaseColor = reduceEnergyFactor * 2.55;
-		int g = Math.min(255, (int)(c.getGreen() + decreaseColor));
-		int b = Math.min(255, (int)(c.getBlue() + decreaseColor));
-		int r = Math.max(0, (int)(c.getRed() - decreaseColor));
+		int g = Math.min(255, (int)Math.round((c.getGreen() + decreaseColor)));
+		int b = Math.min(255, (int)Math.round(c.getBlue() + decreaseColor));
+		int r = Math.max(0, (int)Math.round(c.getRed() - decreaseColor));
+		//if(true) throw new RuntimeException("R value: " + r);
 		Color res = null;
 		//try {
 			res = new Color(r,g,b);

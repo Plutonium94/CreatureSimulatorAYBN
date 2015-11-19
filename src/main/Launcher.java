@@ -45,8 +45,8 @@ public class Launcher extends JFrame {
 	private JPanel conteneur = new JPanel();
 	
 	
-	private JLabel label = new JLabel("");
-	private JLabel label2 = new JLabel("");
+	private JLabel label = new JLabel("abc");
+	private JLabel label2 = new JLabel("def");
 	
 	public Launcher() {
 		factory = CreaturePluginFactory.getInstance();
@@ -60,8 +60,7 @@ public class Launcher extends JFrame {
 		
 
 		setName("Creature Simulator Plugin Version");
-		setLayout(new BorderLayout());
-
+		
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
 		loader.addActionListener(new ActionListener() {
@@ -91,7 +90,7 @@ public class Launcher extends JFrame {
 						}
 					}
 					simulator.clearCreatures();
-					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, 1, new ColorCube(50),currentConstructor);
+					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, 10, new ColorCube(50),currentConstructor);
 					simulator.addAllCreatures(creatures);
 					simulator.start();
 				}
