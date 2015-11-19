@@ -48,19 +48,27 @@ public class Launcher extends JFrame {
 	private JLabel label = new JLabel("abc");
 	private JLabel label2 = new JLabel("def");
 	
+	
 	public Launcher() {
 		factory = CreaturePluginFactory.getInstance();
 		
 		conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.Y_AXIS));
 		conteneur.add(label);
 		conteneur.add(label2);
+		add(conteneur, BorderLayout.EAST);
+		
 		
 		
 		
 		
 
 		setName("Creature Simulator Plugin Version");
+<<<<<<< HEAD
 		
+=======
+		//setLayout(new BorderLayout());
+
+>>>>>>> 6ccfdb98d02c7e0e1a375353f29a1bcf7b786326
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
 		loader.addActionListener(new ActionListener() {
@@ -117,6 +125,8 @@ public class Launcher extends JFrame {
 	    pack();
 	    label.setText("number of creatures alive : " +  simulator.countCreaturesalive());
 	    label2.setText(" number of dead creatures  : " + simulator.countCreaturesdead());
+	    
+	    pack();
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				exit(evt);

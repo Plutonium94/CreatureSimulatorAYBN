@@ -47,7 +47,6 @@ public class EnergySearchingCreature extends AbstractCreature {
 			this.move(3, 3);
 		}
 
-		
 		this.setEnergy(this.getEnergy()-reduceEnergyFactor);
 		//this.color = cyanify(getColor());
 		cyanify();
