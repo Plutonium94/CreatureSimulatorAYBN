@@ -33,6 +33,10 @@ import creatures.visual.CreatureVisualizer;
 @SuppressWarnings("serial")
 public class Launcher extends JFrame {
 
+	private int nbVivants = 0;
+	private int nbMorts = 0;
+	private double energieTotale = 0.0;
+	
 	private final CreaturePluginFactory factory;
 	
 	private final CreatureInspector inspector;
@@ -63,12 +67,12 @@ public class Launcher extends JFrame {
 		
 
 		setName("Creature Simulator Plugin Version");
-<<<<<<< HEAD
+
 		
-=======
+
 		//setLayout(new BorderLayout());
 
->>>>>>> 6ccfdb98d02c7e0e1a375353f29a1bcf7b786326
+
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
 		loader.addActionListener(new ActionListener() {
@@ -108,7 +112,8 @@ public class Launcher extends JFrame {
 		
 		add(buttons, BorderLayout.SOUTH);
 				
-		simulator = new CreatureSimulator(new Dimension(640, 480));		
+		simulator = new CreatureSimulator(new Dimension(640, 480));	
+		simulator.setLaucher(this);
 		inspector = new CreatureInspector();
 		inspector.setFocusableWindowState(false);
 		visualizer = new CreatureVisualizer(simulator);
@@ -161,6 +166,11 @@ public class Launcher extends JFrame {
 		menuBuilder.buildMenu();
 		mb.add(menuBuilder.getMenu());
 		setJMenuBar(mb);
+	}
+	
+	public void updateStats() {
+		this.label.setText("Nb vivants : " + simulator.countCreaturesalive());
+		this.label2.setText("Nb morts : "  + simulator.countCreaturesdead());
 	}
 	
 	

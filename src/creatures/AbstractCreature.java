@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import commons.Utils.Predicate;
+import creatures.visual.CreatureSimulator;
 
 /***
  * @author Daniel
@@ -125,10 +126,15 @@ public abstract class AbstractCreature implements ICreature {
 	
 	@Override
 	public void setEnergy( double energy){
+		CreatureSimulator env = (CreatureSimulator)environment;
 		if(energy <= MIN_ENERGY) {
 			this.energy = MIN_ENERGY;
+			env.removeCreature(this);
+			
 		} else if(energy >= MAX_ENERGY) {
+			
 			this.energy = MAX_ENERGY;
+			
 		} else {
 			this.energy = energy;
 		}

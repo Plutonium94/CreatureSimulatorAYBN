@@ -7,6 +7,7 @@ import java.awt.geom.Point2D;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import main.Launcher;
 import simulator.EnergyPoint;
 import simulator.Simulator;
 import commons.Utils;
@@ -35,6 +36,17 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 			return input.distanceFromAPoint(point) <= margin;
 		}
 	}
+	
+	private Launcher launcher = null;
+	
+	public void setLaucher(Launcher laucher) {
+		this.launcher = laucher;
+	}
+	
+	// Stats
+	private int nbVivants = 0;
+	private int nbMorts = 0;
+	private double energieTotale = 0;
 
 	private Dimension size;
 	private static final int DEFAULT_NUM_ENERGY_POINTS = 5;
@@ -51,6 +63,8 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 		}
 		energyPoints= res;
 	}
+	
+	
 	
 	/**
 	 * @return a copy of current size
@@ -108,10 +122,15 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	
 	public void addCreature(ICreature creature) {
 		actionables.add(creature);
+		nbVivants += 1;
+		energieTotale += creature.getEnergy();
 	}
 	
 	public void removeCreature(ICreature creature) {
 		actionables.remove(creature);
+		nbVivants--;
+		nbMorts++;
+		energieTotale -= ((AbstractCreature)creature).getEnergy();
 	}
 	
 	public Iterable<ICreature> creaturesNearByAPoint(Point2D point,  double radius) {
@@ -120,31 +139,65 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 
 	public void addAllCreatures(Collection<? extends ICreature> creatures) {
 		actionables.addAll(creatures);
+		nbVivants += creatures.size();
+		for(ICreature c : creatures) {
+			energieTotale += ((AbstractCreature) c).getEnergy();
+		}
 	}
 	
 	public void clearCreatures() {
+		nbMorts += actionables.size();
 		actionables.clear();
+		nbVivants = 0;
+	}
+	
+	public double getEnergieMoyenne() {
+		return energieTotale/nbVivants;
+	}
+	
+	public void setEnergieTotale(double et) {
+		this.energieTotale = et;
+	}
+	
+	public void setNbVivants(int n) {
+		this.nbVivants = n;
+	}
+	
+	public void setNbMorts(int n) {
+		this.nbMorts = n;
+	}
+	
+	public double getEnergieTotale() {
+		return this.energieTotale;
 	}
 	
 	public int countCreaturesalive(){
-		int countalive = 0;
+		/*int countalive = 0;
 		for(ICreature c : getCreatures()) {
 			AbstractCreature ac = (AbstractCreature)c;
 			if (ac.isAlive()){
 				countalive++ ;
 			}
 		}
-		return countalive;
+		return countalive;*/
+		return nbVivants;
 	}
 	public int countCreaturesdead() {
-		int countdie = 0;
+		/*int countdie = 0;
 		for(ICreature c : getCreatures()) {
 			AbstractCreature ac = (AbstractCreature)c;
 			if (!ac.isAlive()){
 				countdie++ ;
 			}
 		}
-		return countdie;
+		return countdie;*/
+		return nbMorts;
+	}
+
+	@Override
+	public void simulate() {
+		super.simulate();
+		launcher.updateStats();
 	}
 		
 		
