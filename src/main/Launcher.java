@@ -1,19 +1,18 @@
 package main;
 
 import java.awt.BorderLayout;
-import java.util.List;
 import java.util.*;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.*;
 import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -43,13 +42,26 @@ public class Launcher extends JFrame {
 	private PluginMenuItemBuilder menuBuilder;
 	private JMenuBar mb = new JMenuBar();	
 	private Constructor<? extends ICreature> currentConstructor = null;
-	  
+	private JPanel conteneur = new JPanel();
+	
+	
+	private JLabel label = new JLabel("");
+	private JLabel label2 = new JLabel("");
+	
 	public Launcher() {
 		factory = CreaturePluginFactory.getInstance();
+		
+		conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.Y_AXIS));
+		conteneur.add(label);
+		conteneur.add(label2);
+		
+		
+		
+		
 
 		setName("Creature Simulator Plugin Version");
 		setLayout(new BorderLayout());
-		
+		add(conteneur,BorderLayout.EAST);
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
 		loader.addActionListener(new ActionListener() {
@@ -96,17 +108,23 @@ public class Launcher extends JFrame {
 		visualizer.setDebug(false);
 		visualizer.setPreferredSize(simulator.getSize());
 		
+		
 		add(visualizer, BorderLayout.CENTER);
+		
+		
 	
 	    buildPluginMenus();
 
 	    pack();
-
+	    label.setText("number of creatures alive : " +  simulator.countCreaturesalive());
+	    label2.setText(" number of dead creatures  : " + simulator.countCreaturesdead());
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				exit(evt);
 			}
 		});
+		
+		
 		
 	}
 	
@@ -121,8 +139,11 @@ public class Launcher extends JFrame {
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// the name of the plugin is in the ActionCommand
+			
 				currentConstructor = factory.getConstructorMap().get(((JMenuItem) e.getSource()).getActionCommand());
-			}
+				label.setText("number of creatures alive : " +  simulator.countCreaturesalive());
+			    label2.setText(" number of dead creatures  : " + simulator.countCreaturesdead());
+			}   
 		};
 		//if(true) throw new RuntimeException("oh yea :::::::: " + factory.getConstructorMap());
 
