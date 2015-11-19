@@ -18,7 +18,7 @@ public class EnergyPoint implements IDrawable {
 	
 	protected final IEnvironment environment;
 	
-	protected static final int size = 60;
+	protected static final int size = 40;
 	
 	public static final int DEFAULT_ENERGY = 40;
 	

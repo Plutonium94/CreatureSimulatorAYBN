@@ -80,7 +80,7 @@ public class EnergySearchingCreature extends AbstractCreature {
 	}
 	
 	
-	private static Color redden(Color c) {
+	static Color redden(Color c) {
 		double increaseColor = gainEnergyFactor * 2.55; 
 		int g = Math.max(0,(int)(c.getGreen() - increaseColor));
 		int b = Math.max(0, (int)(c.getBlue() - increaseColor));
@@ -89,7 +89,7 @@ public class EnergySearchingCreature extends AbstractCreature {
 		return res;
 	}
 	
-	private static Color cyanify(Color c) {
+	static Color cyanify(Color c) {
 		double decreaseColor = reduceEnergyFactor * 2.55;
 		int g = Math.min(255, (int)(c.getGreen() + decreaseColor));
 		int b = Math.min(255, (int)(c.getBlue() + decreaseColor));
@@ -105,5 +105,7 @@ public class EnergySearchingCreature extends AbstractCreature {
 		
 		return res;
 	}
+	
+
 
 }

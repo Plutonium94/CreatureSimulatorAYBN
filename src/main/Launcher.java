@@ -50,9 +50,8 @@ public class Launcher extends JFrame {
 
 		setName("Creature Simulator Plugin Version");
 		setLayout(new BorderLayout());
-		JPanel cont = new JPanel();
-		cont.add(new JLabel("Daniel Arasu"));
-		this.add(cont, BorderLayout.EAST);
+		
+		
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
 		loader.addActionListener(new ActionListener() {
