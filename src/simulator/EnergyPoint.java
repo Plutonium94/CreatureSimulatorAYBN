@@ -9,13 +9,16 @@ import creatures.ICreature;
 import creatures.IEnvironment;
 import visual.*;
 
+/***
+ * @author Plutonium94
+ */
 public class EnergyPoint implements IDrawable {
 	
 	protected final Point2D position;
 	
 	protected final IEnvironment environment;
 	
-	protected static final int size = 50;
+	protected static final int size = 60;
 	
 	public static final int DEFAULT_ENERGY = 40;
 	
@@ -47,19 +50,25 @@ public class EnergyPoint implements IDrawable {
 	
 	@Override
 	public void paint(Graphics2D g2) {
-		g2.translate(position.getX(), position.getY());
+		int largeur = environment.getSize().width; int hauteur = environment.getSize().height;
+		g2.drawRect(-largeur/2, -hauteur/2, largeur-3, hauteur-3);
+		//g2.translate(position.getX(), position.getY());
 		g2.translate(-size / 2, -size / 2);
 		g2.setColor(color);
+
 		g2.fillOval((int)position.getX(), (int)position.getY(), size, size);
+		//g2.fillOval(0, 0, size, size);
+		
 	}
 	
 	
 	public boolean isInVicinity(ICreature creature) {
-		return getPosition().distance(creature.getPosition()) <= getSize();
+		return getPosition().distance(creature.getPosition()) <= getSize()/2;
 	}
 	
 	public void energize(ICreature creature) {
 		creature.setEnergy(creature.getEnergy() + this.getEnergy());
+		java.awt.Toolkit.getDefaultToolkit().beep();
 	}
 	
 	@Override

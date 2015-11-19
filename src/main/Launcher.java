@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -49,7 +50,9 @@ public class Launcher extends JFrame {
 
 		setName("Creature Simulator Plugin Version");
 		setLayout(new BorderLayout());
-		
+		JPanel cont = new JPanel();
+		cont.add(new JLabel("Daniel Arasu"));
+		this.add(cont, BorderLayout.EAST);
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
 		loader.addActionListener(new ActionListener() {
@@ -79,7 +82,7 @@ public class Launcher extends JFrame {
 						}
 					}
 					simulator.clearCreatures();
-					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, 10, new ColorCube(50),currentConstructor);
+					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, 1, new ColorCube(50),currentConstructor);
 					simulator.addAllCreatures(creatures);
 					simulator.start();
 				}
