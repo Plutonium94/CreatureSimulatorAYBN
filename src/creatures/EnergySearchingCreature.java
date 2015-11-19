@@ -95,13 +95,13 @@ public class EnergySearchingCreature extends AbstractCreature {
 		int b = Math.min(255, (int)(c.getBlue() + decreaseColor));
 		int r = Math.max(0, (int)(c.getRed() - decreaseColor));
 		Color res = null;
-		try {
+		//try {
 			res = new Color(r,g,b);
-		} catch(IllegalArgumentException iae) {
+		/*} catch(IllegalArgumentException iae) {
 			System.err.println("bad r value : " + r + ", red : " + c.getRed());
 			System.err.println("bad g value : " + g + ", green : " + c.getGreen());
 			System.err.println("bad b value : " + b + ", blue: " + c.getBlue());
-		}
+		}*/
 		
 		return res;
 	}
