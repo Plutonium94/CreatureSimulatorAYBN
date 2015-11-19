@@ -46,9 +46,14 @@ public class EnergySearchingCreature extends AbstractCreature {
 		} else {
 			this.move(3, 3);
 		}
+<<<<<<< HEAD
+		this.setEnergy(this.getEnergy()-10);
+		//this.color = cyanify(getColor());
+=======
 		this.setEnergy(this.getEnergy()-reduceEnergyFactor);
 		//this.color = cyanify(getColor());
 		cyanify();
+>>>>>>> bf5e7b38685df0e82818c64949a02f950029b554
 	}
 	
 	public boolean beEnergized(EnergyPoint ep) {

@@ -16,5 +16,5 @@ public interface IDrawable {
 	 *            canvas where to draw the creature.
 	 */
 	public void paint(Graphics2D g2);
-
+	
 }

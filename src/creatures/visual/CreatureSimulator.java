@@ -11,7 +11,7 @@ import simulator.EnergyPoint;
 import simulator.Simulator;
 import commons.Utils;
 import commons.Utils.Predicate;
-
+import creatures.AbstractCreature;
 import creatures.ICreature;
 import creatures.IEnvironment;
 
@@ -24,7 +24,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	static class CreaturesNearbyPoint implements Predicate<ICreature> {
 		private final Point2D point;
 		private final double margin;
-
+	
 		public CreaturesNearbyPoint(Point2D point, double margin) {
 			this.point = point;
 			this.margin = margin;
@@ -125,5 +125,29 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	public void clearCreatures() {
 		actionables.clear();
 	}
+	
+	public int countCreaturesalive(){
+		int countalive = 0;
+		for(ICreature c : getCreatures()) {
+			AbstractCreature ac = (AbstractCreature)c;
+			if (ac.isAlive()){
+				countalive++ ;
+			}
+		}
+		return countalive;
+	}
+	public int countCreaturesdead() {
+		int countdie = 0;
+		for(ICreature c : getCreatures()) {
+			AbstractCreature ac = (AbstractCreature)c;
+			if (!ac.isAlive()){
+				countdie++ ;
+			}
+		}
+		return countdie;
+	}
+		
+		
+	
 
 }

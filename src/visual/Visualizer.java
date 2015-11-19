@@ -1,19 +1,28 @@
 package visual;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.sun.media.jfxmedia.logging.Logger;
+import com.sun.prism.paint.Color;
 
 @SuppressWarnings("serial")
 public abstract class Visualizer extends JPanel {
+	
+	
+
+	private static final java.awt.Color Color = null;
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		
 		Graphics2D g2 = (Graphics2D) g;
 		
@@ -23,9 +32,11 @@ public abstract class Visualizer extends JPanel {
 //		g2.translate(getWidth() / 2, getHeight() / 2);
 
 		paint(g2);
+		
 
 		// restore transformation
 		g2.setTransform(pT);
+		
 	}
 
 	protected void paint(Graphics2D g2) {
@@ -37,7 +48,12 @@ public abstract class Visualizer extends JPanel {
 
 			// restore transformation
 			g2.setTransform(cT);
+			JPanel p = new JPanel(new BorderLayout());
+			
+			
 		}
+	
+		
 	}
 
 	protected AffineTransform getTransform() {
@@ -45,5 +61,7 @@ public abstract class Visualizer extends JPanel {
 	}
 	
 	protected abstract Iterable<? extends IDrawable> getDrawables();
+	
+	
 
 }
