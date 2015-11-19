@@ -48,20 +48,22 @@ public class Launcher extends JFrame {
 	private JLabel label = new JLabel("");
 	private JLabel label2 = new JLabel("");
 	
+	
 	public Launcher() {
 		factory = CreaturePluginFactory.getInstance();
 		
 		conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.Y_AXIS));
 		conteneur.add(label);
 		conteneur.add(label2);
-		//add(conteneur, BorderLayout.EAST);
+		add(conteneur, BorderLayout.EAST);
+		
 		
 		
 		
 		
 
 		setName("Creature Simulator Plugin Version");
-		setLayout(new BorderLayout());
+		//setLayout(new BorderLayout());
 
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
