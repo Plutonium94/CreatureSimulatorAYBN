@@ -61,7 +61,7 @@ public class Launcher extends JFrame {
 
 		setName("Creature Simulator Plugin Version");
 		setLayout(new BorderLayout());
-		add(conteneur,BorderLayout.EAST);
+
 		JPanel buttons = new JPanel();
 		JButton loader = new JButton("Load plugins");
 		loader.addActionListener(new ActionListener() {
@@ -91,7 +91,7 @@ public class Launcher extends JFrame {
 						}
 					}
 					simulator.clearCreatures();
-					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, 10, new ColorCube(50),currentConstructor);
+					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, 1, new ColorCube(50),currentConstructor);
 					simulator.addAllCreatures(creatures);
 					simulator.start();
 				}

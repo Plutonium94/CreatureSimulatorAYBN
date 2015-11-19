@@ -5,10 +5,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import org.junit.*;
-import org.mockito.Mockito;
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.Arrays;
 import java.util.ArrayList;
 
 import creatures.*;
@@ -23,6 +21,9 @@ public class EnergyPointTest {
 	double[] initialPositionCoordinates = {0,3, 1,7, 3,10, 6,8 };
 	final double w = 200;
 	final double h = 100;
+	
+	private static final int ep1_x = 30;
+	private static final int ep1_y = 40;
 	
 	@BeforeClass 
 	public static void beforeClassSetup() {
@@ -40,7 +41,7 @@ public class EnergyPointTest {
 		}
 		when(environment.getEnergyPoints()).thenReturn(energyPointList);
 		
-		ep1 = new EnergyPoint(environment,new Point2D.Double(30, 40));
+		ep1 = new EnergyPoint(environment,new Point2D.Double(ep1_x, ep1_y));
 	}
 
 	@Ignore
@@ -51,6 +52,33 @@ public class EnergyPointTest {
 	@Test
 	public void testGetSize() {
 		assertEquals(ep1.getSize(), EnergyPoint.size);
+	}
+	
+	@Test 
+	/***
+	 * Tests if a creature is really in the vicinity of an EnergyPoint
+	 */
+	public void testIsInVicity() {
+		sc.setPosition(new Point2D.Double(ep1_x, ep1_y - EnergyPoint.size/2 - 1));
+		assertFalse(ep1.isInVicinity(sc));
+		sc.setPosition(new Point2D.Double(ep1_x, ep1_y - EnergyPoint.size/2));
+		assertTrue(ep1.isInVicinity(sc));
+		sc.setPosition(new Point2D.Double(ep1_x - EnergyPoint.size/2 - 1, ep1_y));
+		assertFalse(ep1.isInVicinity(sc));
+		sc.setPosition(new Point2D.Double(ep1_x - EnergyPoint.size/2, ep1_y));
+		assertTrue(ep1.isInVicinity(sc));	
+	}
+	
+	@Test
+	public void energizeTest() {
+		double reducedEnergy = 35;
+		sc.setEnergy(reducedEnergy);
+		ep1.energize(sc);
+		assertEquals( ep1.getEnergy() + reducedEnergy, sc.getEnergy(), 0.01 );
+		reducedEnergy = AbstractCreature.MAX_ENERGY - ep1.getEnergy() - 1;
+		sc.setEnergy(reducedEnergy);
+		ep1.energize(sc);
+		assertNotEquals(AbstractCreature.MAX_ENERGY, sc.getEnergy(), 0.01);
 	}
 
 	@Test
@@ -72,25 +100,6 @@ public class EnergyPointTest {
 		assertEquals(7, ep1.getEnergy());
 	}
 	
-	@Ignore
-	public void testNearestEnergyPoint() {
-		assertEquals(4, energyPointList.size());
-		assertNotNull(environment);
-		System.out.println(environment);
-		System.out.println(environment.getNearestEnergyPointCoordinates(sc));
-		assertNotNull(sc);
-		EnergyPoint nearestEnergyPoint = null;
-		double minDistance = Double.POSITIVE_INFINITY;
-		for(EnergyPoint ept : environment.getEnergyPoints()) {
-			double dist = sc.getPosition().distance(ept.getPosition());
-			if(dist < minDistance) {
-				minDistance = dist;
-				nearestEnergyPoint = ept;
-			}
-		}
-		System.out.println(nearestEnergyPoint.getPosition());
-		assertEquals(4, ((ArrayList<EnergyPoint>)environment.getEnergyPoints()).size());
-		assertEquals(energyPointList.get(0).getPosition(), environment.getNearestEnergyPointCoordinates(sc));
-	}
+	
 
 }

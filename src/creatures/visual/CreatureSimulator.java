@@ -47,7 +47,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 		this.size = initialSize;
 		ArrayList<EnergyPoint> res = new ArrayList<>();
 		for(int i = 0; i < numEnergyPoints; i++) {
-			res.add(new EnergyPoint(this, new Point2D.Double(Utils.getRandom(-size.getWidth()/4 + 25, size.getWidth()/4-25), Utils.getRandom(-size.getHeight()/4 + 25, size.getHeight()/4 - 25))));
+			res.add(new EnergyPoint(this, new Point2D.Double(Utils.getRandom(-size.getWidth()/2 + 25, size.getWidth()/2-25), Utils.getRandom(-size.getHeight()/2 + 25, size.getHeight()/2 - 25))));
 		}
 		energyPoints= res;
 	}
@@ -68,6 +68,9 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	 */
 	@Override
 	public Iterable<ICreature> getCreatures() {
+		/*ArrayList<ICreature> res = new ArrayList<ICreature>();
+		res.add(actionables.get(0));
+		return res;*/
 		return new ArrayList<ICreature>(actionables);
 	}
 	
@@ -89,7 +92,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	 * @param creature
 	 * @return 
 	 */
-	public Point2D getNearestEnergyPointCoordinates(ICreature creature) {
+	public EnergyPoint getNearestEnergyPoint(ICreature creature) {
 		EnergyPoint nearestEnergyPoint = null;
 		double minDistance = Double.POSITIVE_INFINITY;
 		Point2D creatureCoordinates = creature.getPosition();
@@ -100,7 +103,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 				nearestEnergyPoint = ep;
 			}
 		}
-		return nearestEnergyPoint.getPosition();
+		return nearestEnergyPoint;
 	}
 	
 	public void addCreature(ICreature creature) {
@@ -127,7 +130,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 		int countalive = 0;
 		for(ICreature c : getCreatures()) {
 			AbstractCreature ac = (AbstractCreature)c;
-			if (ac.IsAlive()){
+			if (ac.isAlive()){
 				countalive++ ;
 			}
 		}
@@ -137,7 +140,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 		int countdie = 0;
 		for(ICreature c : getCreatures()) {
 			AbstractCreature ac = (AbstractCreature)c;
-			if (!ac.IsAlive()){
+			if (!ac.isAlive()){
 				countdie++ ;
 			}
 		}
