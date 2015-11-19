@@ -33,17 +33,6 @@ public class EnergySearchingCreatureTest {
 		esc = null;
 	}
 	
-/*	@Test 
-	public void testCyanify() {
-		assertEquals(Color.RED, esc.getColor());
-		double energyLost = EnergySearchingCreature.reduceEnergyFactor;
-		esc.act();//esc.setEnergy(esc.getEnergy() - energyLost);
-		assertEquals(AbstractCreature.MAX_ENERGY - energyLost, esc.getEnergy(), EPSILON);
-		Color newColor = esc.getColor();
-		assertEquals(255 - energyLost*COLOR_FACTOR, newColor.getRed(), EPSILON);
-		assertEquals(energyLost*COLOR_FACTOR, newColor.getGreen(), EPSILON);
-		assertEquals(energyLost * COLOR_FACTOR, newColor.getBlue(), EPSILON);
-	}*/
 	
 	@Test
 	public void testCyanify() {

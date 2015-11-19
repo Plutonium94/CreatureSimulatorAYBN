@@ -20,7 +20,7 @@ public class EnergyPoint implements IDrawable {
 	
 	protected static final int size = 40;
 	
-	public static final int DEFAULT_ENERGY = 40;
+	public static final int DEFAULT_ENERGY = 50;
 	
 	private int energy = DEFAULT_ENERGY;
 	

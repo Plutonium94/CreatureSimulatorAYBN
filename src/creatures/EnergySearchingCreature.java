@@ -19,7 +19,7 @@ import java.awt.Color;
 public class EnergySearchingCreature extends AbstractCreature {
 	
 	public static double reduceEnergyFactor = 0.2;
-	public static int gainEnergyFactor = 60;
+	public static int gainEnergyFactor = EnergyPoint.DEFAULT_ENERGY;
 
 	public EnergySearchingCreature(IEnvironment environment, Point2D position, double speed, double direction, Color color) {
 		super(environment, position);
