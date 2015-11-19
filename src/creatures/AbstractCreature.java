@@ -243,7 +243,7 @@ public abstract class AbstractCreature implements ICreature {
 
 	@Override
 	public void paint(Graphics2D g2) {
-		g2.fillOval((int)position.getX(), (int) position.getY(), 14, 14);
+		//g2.fillOval((int)position.getX(), (int) position.getY(), 14, 14);
 		// center the point
 		g2.translate(position.getX(), position.getY());
 		// center the surrounding rectangle
@@ -253,7 +253,7 @@ public abstract class AbstractCreature implements ICreature {
 		g2.rotate(-direction, size / 2, size / 2);
 
 		// useful for debugging
-		g2.drawRect(0, 0, size, size);
+		//g2.drawRect(0, 0, size, size);
 
 		// set the color
 		g2.setColor(color);
@@ -261,7 +261,7 @@ public abstract class AbstractCreature implements ICreature {
 		g2.fillArc(0, 0, size, size, (int) toDegrees(-fieldOfView / 2),
 				(int) toDegrees(fieldOfView));
 		
-		g2.setColor(Color.BLACK);
+		//g2.setColor(Color.BLACK);
 		
 
 	}
