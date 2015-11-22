@@ -123,14 +123,16 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	public void addCreature(ICreature creature) {
 		actionables.add(creature);
 		nbVivants += 1;
-		energieTotale +=  ((AbstractCreature) creature).getEnergy();
+		//energieTotale +=  ((AbstractCreature) creature).getEnergy();
+		energieTotale +=  100;
 	}
 	
 	public void removeCreature(ICreature creature) {
 		actionables.remove(creature);
 		nbVivants--;
 		nbMorts++;
-		energieTotale -=  ((AbstractCreature) creature).getEnergy();
+		//energieTotale -=  ((AbstractCreature) creature).getEnergy();
+		energieTotale -=  100;
 		
 	}
 	
