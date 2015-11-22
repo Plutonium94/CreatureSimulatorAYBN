@@ -6,7 +6,9 @@ import static java.lang.Math.abs;
 import java.awt.Color;
 import java.awt.geom.Point2D;
 
+import simulator.EnergyPoint;
 import commons.Utils.Predicate;
+import creatures.visual.CreatureSimulator;
 
 
 /**
@@ -26,11 +28,13 @@ import commons.Utils.Predicate;
  */
 public class SmartCreature extends AbstractCreature {
 	
+	private final static double MAX_SPEED = 10d;
+	
 	static class CreaturesAroundCreature implements Predicate<ICreature> {
-		private final SmartCreature observer;
+		private final AbstractCreature observer;
 
-		public CreaturesAroundCreature(SmartCreature observer) {
-			this.observer = observer;
+		public CreaturesAroundCreature(AbstractCreature abstractCreature) {
+			this.observer = abstractCreature;
 		}
 
 		@Override
@@ -72,6 +76,17 @@ public class SmartCreature extends AbstractCreature {
 		double avgDir = direction;
 		// distance - used to find the closest nearby creature
 		double minDist = Double.MAX_VALUE;
+		CreatureSimulator environment = (CreatureSimulator)getEnvironment();
+		EnergyPoint nearestEnergyPoint = environment.getNearestEnergyPoint(this);
+		Point2D nearestEnergyPointCoordinates = nearestEnergyPoint.getPosition();
+		if (this.distanceFromAPoint(nearestEnergyPointCoordinates) <= 5){
+			nearestEnergyPoint.energize(this);
+		}
+		if(this.getEnergy() <= 30) {
+			this.setSpeed(MAX_SPEED);
+			energySearch(nearestEnergyPointCoordinates);
+		}
+		else{
 
 		// iterate over all nearby creatures
 		Iterable<ICreature> creatures = creaturesAround(this);
@@ -104,6 +119,7 @@ public class SmartCreature extends AbstractCreature {
 
 			// we should not moved closer than a dist - MIN_DIST
 			move(incX, incY);
+		}
 		}
 	}
 

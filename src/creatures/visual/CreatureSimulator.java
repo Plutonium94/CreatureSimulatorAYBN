@@ -123,14 +123,15 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	public void addCreature(ICreature creature) {
 		actionables.add(creature);
 		nbVivants += 1;
-		energieTotale += creature.getEnergy();
+		energieTotale +=  ((AbstractCreature) creature).getEnergy();
 	}
 	
 	public void removeCreature(ICreature creature) {
 		actionables.remove(creature);
 		nbVivants--;
 		nbMorts++;
-		energieTotale -= ((AbstractCreature)creature).getEnergy();
+		energieTotale -=  ((AbstractCreature) creature).getEnergy();
+		
 	}
 	
 	public Iterable<ICreature> creaturesNearByAPoint(Point2D point,  double radius) {
@@ -149,6 +150,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 		nbMorts += actionables.size();
 		actionables.clear();
 		nbVivants = 0;
+		energieTotale = 0 ;
 	}
 	
 	public double getEnergieMoyenne() {

@@ -9,6 +9,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
 
+import simulator.EnergyPoint;
+import creatures.visual.CreatureSimulator;
+
 public class BouncingCreature extends AbstractCreature {
 
 	private static final double MIN_SPEED = 3;
@@ -37,8 +40,20 @@ public class BouncingCreature extends AbstractCreature {
 
 	@Override
 	public void act() {
+		CreatureSimulator environment = (CreatureSimulator)getEnvironment();
+		EnergyPoint nearestEnergyPoint = environment.getNearestEnergyPoint(this);
+		Point2D nearestEnergyPointCoordinates = nearestEnergyPoint.getPosition();
+		if (this.distanceFromAPoint(nearestEnergyPointCoordinates) <= 5){
+			nearestEnergyPoint.energize(this);
+			
+		}
+		if(this.getEnergy() <= 10) {		
+			energySearch(nearestEnergyPointCoordinates);
+		}
+		else{
 		applyNoise();
 		move();
+	}
 	}
 
 	/**

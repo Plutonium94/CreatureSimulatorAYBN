@@ -15,8 +15,11 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 import commons.Utils.Predicate;
+import creatures.SmartCreature.CreaturesAroundCreature;
 import creatures.visual.CreatureSimulator;
 
 /***
@@ -28,6 +31,8 @@ public abstract class AbstractCreature implements ICreature {
 	public static final int DEFAULT_VISION_DISTANCE = 50;
 	public static final double MAX_ENERGY = 100;
 	public static final double MIN_ENERGY = 0;
+	public static final double ENERGY_LOST = 0.05;
+	
 
 	/**
 	 * The field of view (FOV) is the extent of the observable world that is
@@ -180,6 +185,8 @@ public abstract class AbstractCreature implements ICreature {
 
 	protected void move(double incX, double incY) {
 		setPosition(position.getX() + incX, position.getY() + incY);
+		setEnergy(getEnergy() - getLostEnergy());
+		
 	}
 
 	protected void rotate(double angle) {
@@ -334,6 +341,26 @@ public abstract class AbstractCreature implements ICreature {
 	
 	public String getName() {
 		return getClass().getName();
+	}
+	public Iterable<ICreature> creaturesAround(
+			AbstractCreature creature) {
+		return filter(environment.getCreatures(), new CreaturesAroundCreature(this));
+	}
+	
+	public double getLostEnergy(){
+		Iterable<ICreature> creatures = creaturesAround(this);
+		int nbCreature = 1 ;
+		for (ICreature c : creatures) {
+			nbCreature++;
+		}
+		return (double)(ENERGY_LOST / nbCreature);
+		
+	}
+	public void energySearch(Point2D nearestEnergyPointCoordinates){
+		this.setDirection(this.directionFormAPoint(nearestEnergyPointCoordinates, Math.PI));
+		double incX = speed * cos(direction);
+		double incY = speed * sin(direction);
+		move(incX, incY);
 	}
 	
 }
