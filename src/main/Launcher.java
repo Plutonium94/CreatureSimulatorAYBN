@@ -51,6 +51,8 @@ public class Launcher extends JFrame {
 	
 	private JLabel label = new JLabel("abc");
 	private JLabel label2 = new JLabel("def");
+	private JLabel label3 = new JLabel("gef");
+	
 	
 	
 	public Launcher() {
@@ -59,6 +61,7 @@ public class Launcher extends JFrame {
 		conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.Y_AXIS));
 		conteneur.add(label);
 		conteneur.add(label2);
+		conteneur.add(label3);
 		add(conteneur, BorderLayout.EAST);
 		
 		
@@ -130,7 +133,7 @@ public class Launcher extends JFrame {
 	    pack();
 	    label.setText("number of creatures alive : " +  simulator.countCreaturesalive());
 	    label2.setText(" number of dead creatures  : " + simulator.countCreaturesdead());
-	    
+	    label3.setText(" energie moyenne: " + simulator.getEnergieMoyenne());
 	    pack();
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
@@ -157,6 +160,7 @@ public class Launcher extends JFrame {
 				currentConstructor = factory.getConstructorMap().get(((JMenuItem) e.getSource()).getActionCommand());
 				label.setText("number of creatures alive : " +  simulator.countCreaturesalive());
 			    label2.setText(" number of dead creatures  : " + simulator.countCreaturesdead());
+			    label3.setText(" energie moyenne: " + simulator.getEnergieMoyenne());
 			}   
 		};
 		//if(true) throw new RuntimeException("oh yea :::::::: " + factory.getConstructorMap());
@@ -171,6 +175,8 @@ public class Launcher extends JFrame {
 	public void updateStats() {
 		this.label.setText("Nb vivants : " + simulator.countCreaturesalive());
 		this.label2.setText("Nb morts : "  + simulator.countCreaturesdead());
+		label3.setText(" energie moyenne: " + simulator.getEnergieMoyenne());
+		
 	}
 	
 	
