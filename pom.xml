@@ -7,8 +7,33 @@
   <build>
     <sourceDirectory>src</sourceDirectory>
     <testSourceDirectory>test</testSourceDirectory>
-    <outputDirectory>myplugins/repository</outputDirectory>
+    <outputDirectory>bin</outputDirectory>
     <plugins>
+      <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+               <execution>
+                  <phase>compile</phase>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+                  <configuration>
+                    <tasks>
+                      <move todir="pluginrepo/creatures">
+                        <fileset dir="bin/creatures">
+                          <include name="BouncingCreature.class"/>
+                          <include name="EnergySearchingCreature.class"/>
+                          <include name="SmartCreature.class" />
+                          <include name="StupidCreature.class" />
+                        </fileset>
+                      </move>
+                  </tasks>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
        <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>

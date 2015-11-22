@@ -36,7 +36,6 @@ public class EnergySearchingCreatureTest {
 	
 	@Test
 	public void testCyanify() {
-		//System.out.println(0 + 0.2 * 2.55);
 		int num = 1;
 		Color oc = new Color(255,0,0);
 		Color nc = oc;

@@ -29,7 +29,7 @@ public class CreaturePluginFactory {
 	
 	protected PluginLoader pluginLoader;
 	
-	private final String pluginDir = "myplugins"+ File.separator+ "repository";
+	private final String pluginDir = "pluginrepo";
 	
 	protected Map<String,Constructor<? extends ICreature>> constructorMap; 
 

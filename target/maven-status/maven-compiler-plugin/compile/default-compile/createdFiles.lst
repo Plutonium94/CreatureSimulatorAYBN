@@ -31,9 +31,11 @@ commons\Utils$Predicate.class
 creatures\visual\CreatureVisualizer$3.class
 simulator\Simulator.class
 visual\Visualizer.class
+simulator\EnergyPoint.class
 creatures\visual\CreatureInspector.class
 visual\IDrawable.class
 commons\Utils$Function2.class
 creatures\visual\CreatureSimulator$CreaturesNearbyPoint.class
+creatures\EnergySearchingCreature.class
 main\Launcher$3.class
 simulator\IActionable.class

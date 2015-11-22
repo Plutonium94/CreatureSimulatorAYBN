@@ -57,7 +57,7 @@ public class CreatureSimulator extends Simulator<ICreature> implements IEnvironm
 	public CreatureSimulator(Dimension initialSize) {
 		super(new CopyOnWriteArrayList<ICreature>(), 10);
 		this.size = initialSize;
-		ArrayList<EnergyPoint> res = new ArrayList<>();
+		ArrayList<EnergyPoint> res = new ArrayList<EnergyPoint>();
 		for(int i = 0; i < numEnergyPoints; i++) {
 			res.add(new EnergyPoint(this, new Point2D.Double(Utils.getRandom(-size.getWidth()/2 + 25, size.getWidth()/2-25), Utils.getRandom(-size.getHeight()/2 + 25, size.getHeight()/2 - 25))));
 		}
