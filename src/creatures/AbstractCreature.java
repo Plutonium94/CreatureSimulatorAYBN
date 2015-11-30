@@ -348,8 +348,11 @@ public abstract class AbstractCreature implements ICreature {
 	}
 	
 	public double getLostEnergy(){
-		Iterable<ICreature> creatures = creaturesAround(this);
+		Iterable<ICreature> creatures = environment.creaturesNearByAPoint(this.getPosition(), 30);
 		int nbCreature = 1 ;
+		if(creatures == null){
+			return ENERGY_LOST ;
+		}
 		for (ICreature c : creatures) {
 			nbCreature++;
 		}
