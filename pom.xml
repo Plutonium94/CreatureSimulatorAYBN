@@ -15,7 +15,47 @@
             <version>1.1</version>
             <executions>
                <execution>
+                  <id>compile</id>
                   <phase>compile</phase>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+                  <configuration>
+                    <tasks>
+                      <move todir="pluginrepo/creatures">
+                        <fileset dir="bin/creatures">
+                          <include name="BouncingCreature.class"/>
+                          <include name="EnergySearchingCreature.class"/>
+                          <include name="SmartCreature.class" />
+                          <include name="StupidCreature.class" />
+                        </fileset>
+                      </move>
+                  </tasks>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>test</id>
+                  <phase>default-testCompile</phase>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+                  <configuration>
+                    <tasks>
+                      <echo message="dan"/>
+                      <move todir="bin/creatures">
+                        <fileset dir="pluginrepo/creatures">
+                          <include name="BouncingCreature.class"/>
+                          <include name="EnergySearchingCreature.class"/>
+                          <include name="SmartCreature.class" />
+                          <include name="StupidCreature.class" />
+                        </fileset>
+                      </move>
+                  </tasks>
+                  </configuration>
+               </execution>
+               <execution>
+                  <id>post-test</id>
+                  <phase>post-test</phase>
                   <goals>
                      <goal>run</goal>
                   </goals>
@@ -34,6 +74,7 @@
                </execution>
             </executions>
          </plugin>
+         
        <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
