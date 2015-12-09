@@ -42,6 +42,8 @@ public class Launcher extends JFrame {
 	private final CreatureInspector inspector;
 	private final CreatureVisualizer visualizer;
 	private final CreatureSimulator simulator;
+
+	private Integer nombreDePointsDEnergie = null;
 	
 	private PluginMenuItemBuilder menuBuilder;
 	private JMenuBar mb = new JMenuBar();	
@@ -56,6 +58,9 @@ public class Launcher extends JFrame {
 	
 	
 	public Launcher() {
+
+
+
 		factory = CreaturePluginFactory.getInstance();
 		
 		conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.Y_AXIS));
@@ -105,7 +110,7 @@ public class Launcher extends JFrame {
 						}
 					}
 					simulator.clearCreatures();
-					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, 10, new ColorCube(50),currentConstructor);
+					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, (nombreDePointsDEnergie ==null)?10: nombreDePointsDEnergie.intValue(), new ColorCube(50),currentConstructor);
 					simulator.addAllCreatures(creatures);
 					simulator.start();
 				}
@@ -184,7 +189,11 @@ public class Launcher extends JFrame {
 	    Logger.getLogger("plug").setLevel(Level.INFO);
 		double myMaxSpeed = 5;
 		CreaturePluginFactory.init(myMaxSpeed);
+
 		Launcher launcher = new Launcher();
+		if(args.length > 0) {
+			launcher.nombreDePointsDEnergie = Integer.parseInt(args[0]);
+		}
 		launcher.setVisible(true);
 	}
 	

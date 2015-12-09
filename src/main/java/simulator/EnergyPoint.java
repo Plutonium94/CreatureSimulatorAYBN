@@ -18,7 +18,9 @@ public class EnergyPoint implements IDrawable {
 	
 	protected final IEnvironment environment;
 	
-	protected static final int size = 40;
+	protected static final int DEFAULT_SIZE = 40;
+
+	protected int size = DEFAULT_SIZE;
 	
 	public static final int DEFAULT_ENERGY = 50;
 	
@@ -46,6 +48,12 @@ public class EnergyPoint implements IDrawable {
 		}
 
 		this.position = new Point2D.Double(x, y);
+	}
+
+	public EnergyPoint(IEnvironment environment, Point2D position, int size, int power) {
+		this(environment, position);
+		this.size = size;
+		this.energy = power;
 	}
 	
 	@Override

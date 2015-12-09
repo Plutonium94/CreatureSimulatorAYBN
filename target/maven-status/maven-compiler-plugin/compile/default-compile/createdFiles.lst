@@ -33,6 +33,7 @@ simulator\Simulator.class
 visual\Visualizer.class
 simulator\EnergyPoint.class
 creatures\visual\CreatureInspector.class
+main\App.class
 visual\IDrawable.class
 commons\Utils$Function2.class
 creatures\visual\CreatureSimulator$CreaturesNearbyPoint.class

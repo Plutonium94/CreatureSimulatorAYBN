@@ -1,0 +1,151 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:62), pid=5920, tid=5268
+#
+# JRE version:  (8.0_05-b13) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.5-b02 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000005ef800):  JavaThread "Unknown thread" [_thread_in_vm, id=5268, stack(0x0000000002140000,0x0000000002240000)]
+
+Stack: [0x0000000002140000,0x0000000002240000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x308dea]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000005ef800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=5268, stack(0x0000000002140000,0x0000000002240000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap:
+ PSYoungGen      total 1024K, used 20K [0x00000000eb300000, 0x00000000eb480000, 0x0000000100000000)
+  eden space 512K, 4% used [0x00000000eb300000,0x00000000eb305288,0x00000000eb380000)
+  from space 512K, 0% used [0x00000000eb400000,0x00000000eb400000,0x00000000eb480000)
+  to   space 512K, 0% used [0x00000000eb380000,0x00000000eb380000,0x00000000eb400000)
+ ParOldGen       total 64000K, used 0K [0x00000000c1800000, 0x00000000c5680000, 0x00000000eb300000)
+  object space 64000K, 0% used [0x00000000c1800000,0x00000000c1800000,0x00000000c5680000)
+ Metaspace       used 673K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 66K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x00000000118d0000,0x0000000011ad0000] byte_map_base: 0x00000000112c4000
+
+Marking Bits: (ParMarkBitMap*) 0x0000000070a713b0
+ Begin Bits: [0x00000000120e0000, 0x0000000013080000)
+ End Bits:   [0x0000000013080000, 0x0000000014020000)
+
+Polling page: 0x0000000000310000
+
+CodeCache: size=245760Kb used=327Kb max_used=327Kb free=245432Kb
+ bounds [0x0000000002510000, 0x0000000002780000, 0x0000000011510000]
+ total_blobs=56 nmethods=0 adapters=37
+ compilation: enabled
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.650 loading class java/lang/Short
+Event: 0.650 loading class java/lang/Short done
+Event: 0.650 loading class java/lang/Integer
+Event: 0.650 loading class java/lang/Integer done
+Event: 0.650 loading class java/lang/Long
+Event: 0.650 loading class java/lang/Long done
+Event: 0.660 loading class java/lang/NullPointerException
+Event: 0.660 loading class java/lang/NullPointerException done
+Event: 0.660 loading class java/lang/ArithmeticException
+Event: 0.660 loading class java/lang/ArithmeticException done
+
+
+Dynamic libraries:
+0x000000013fc60000 - 0x000000013fc94000 	C:\Program Files\Java\jdk1.8.0_05\bin\java.exe
+0x0000000077a60000 - 0x0000000077c09000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000077940000 - 0x0000000077a60000 	C:\Windows\system32\kernel32.dll
+0x000007fefd860000 - 0x000007fefd8cc000 	C:\Windows\system32\KERNELBASE.dll
+0x000007feffa20000 - 0x000007feffafb000 	C:\Windows\system32\ADVAPI32.dll
+0x000007feff1d0000 - 0x000007feff26f000 	C:\Windows\system32\msvcrt.dll
+0x000007feffd50000 - 0x000007feffd6f000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007feff7a0000 - 0x000007feff8cd000 	C:\Windows\system32\RPCRT4.dll
+0x0000000077840000 - 0x000000007793a000 	C:\Windows\system32\USER32.dll
+0x000007feff160000 - 0x000007feff1c7000 	C:\Windows\system32\GDI32.dll
+0x000007feff460000 - 0x000007feff46e000 	C:\Windows\system32\LPK.dll
+0x000007feff8d0000 - 0x000007feff999000 	C:\Windows\system32\USP10.dll
+0x000007fefc3e0000 - 0x000007fefc5d4000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.18837_none_fa3b1e3d17594757\COMCTL32.dll
+0x000007feff9a0000 - 0x000007feffa11000 	C:\Windows\system32\SHLWAPI.dll
+0x000007feff430000 - 0x000007feff45e000 	C:\Windows\system32\IMM32.DLL
+0x000007feff270000 - 0x000007feff379000 	C:\Windows\system32\MSCTF.dll
+0x0000000071a30000 - 0x0000000071b02000 	C:\Program Files\Java\jdk1.8.0_05\jre\bin\msvcr100.dll
+0x00000000702c0000 - 0x0000000070aea000 	C:\Program Files\Java\jdk1.8.0_05\jre\bin\server\jvm.dll
+0x000007fef9710000 - 0x000007fef9719000 	C:\Windows\system32\WSOCK32.dll
+0x000007feff380000 - 0x000007feff3cd000 	C:\Windows\system32\WS2_32.dll
+0x000007fefdf70000 - 0x000007fefdf78000 	C:\Windows\system32\NSI.dll
+0x000007fefbd60000 - 0x000007fefbd9b000 	C:\Windows\system32\WINMM.dll
+0x0000000077c30000 - 0x0000000077c37000 	C:\Windows\system32\PSAPI.DLL
+0x0000000074470000 - 0x000000007447f000 	C:\Program Files\Java\jdk1.8.0_05\jre\bin\verify.dll
+0x0000000074350000 - 0x0000000074378000 	C:\Program Files\Java\jdk1.8.0_05\jre\bin\java.dll
+0x0000000073d20000 - 0x0000000073d36000 	C:\Program Files\Java\jdk1.8.0_05\jre\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dclassworlds.conf=C:\Program Files\apache-maven-3.3.3\bin\..\bin\m2.conf -Dmaven.home=C:\Program Files\apache-maven-3.3.3\bin\.. -Dmaven.multiModuleProjectDirectory=c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu 
+java_command: org.codehaus.plexus.classworlds.launcher.Launcher -P run
+java_class_path (initial): C:\Program Files\apache-maven-3.3.3\bin\..\boot\plexus-classworlds-2.5.2.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_05
+PATH=D:\app\user\product\11.2.0\dbhome_1\bin;C:\Program Files (x86)\iis express\PHP\v5.4;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\system;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Git\cmd;;C:\ProgramData\ComposerSetup\bin;C:\Users\user\AppData\Roaming\Composer\vendor\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\PICT\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\IBM\ILOG\CPLEX_Studio125\opl\bin\x86_win32;C:\Program Files (x86)\IBM\ILOG\CPLEX_Studio125\opl\oplide\;C:\Program Files (x86)\IBM\ILOG\CPLEX_Studio125\cplex\bin\x86_win32;C:\Program Files (x86)\IBM\ILOG\CPLEX_Studio125\cpoptimizer\bin\x86_win32;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Java\jdk1.8.0_05\bin;C:\Python34;C:\Program Files (x86)\PICT;C:\Program Files\apache-maven-3.3.3\bin
+USERNAME=user
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 Service Pack 1
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, clmul, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 4088764k(886260k free), swap 4086928k(3660k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.5-b02) for windows-amd64 JRE (1.8.0_05-b13), built on Mar 18 2014 01:08:39 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Mon Dec 07 16:32:43 2015
+elapsed time: 0 seconds
+
