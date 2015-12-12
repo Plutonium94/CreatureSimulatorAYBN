@@ -44,9 +44,9 @@ public class App
 			fi.eval(FM);
 			FeatureModelVariable fmv = fi.getFMVariable(fmName);
 	    	
+	    	fi.eval(configName+" = configuration "+fmName);
 	    	System.out.println("Instantiated FM : "+fmv.getSyntacticalRepresentation());
 	    	
-	    	fi.eval(configName+" = configuration "+fmName);
 	    	
 	    	
 	        Scanner scan = new Scanner(System.in);

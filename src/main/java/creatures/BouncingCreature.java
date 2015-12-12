@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import java.awt.geom.Point2D;
 
 import simulator.EnergyPoint;
-import creatures.visual.CreatureSimulator;
+import creatures.visual.*;
 
 public class BouncingCreature extends AbstractCreature {
 
@@ -37,6 +37,13 @@ public class BouncingCreature extends AbstractCreature {
 
 		currCycle = 0;
 	}
+
+	public BouncingCreature(IEnvironment environment, Point2D position, double direction, double speed, CreatureShape forme, Color color) {
+		this(environment, position, direction, speed, color);
+		this.forme = forme;
+	}
+
+
 
 	@Override
 	public void act() {

@@ -20,7 +20,7 @@ import static java.lang.Math.sin;
 
 import commons.Utils.Predicate;
 import creatures.SmartCreature.CreaturesAroundCreature;
-import creatures.visual.CreatureSimulator;
+import creatures.visual.*;
 
 /***
  * @author Daniel
@@ -58,6 +58,9 @@ public abstract class AbstractCreature implements ICreature {
 	/** Color of the creature */
 	protected Color color;
 
+	/** Shape of the creature */
+	protected CreatureShape forme = CreatureShape.DEFAULT;
+
 	/** Reference to the environment */
 	protected final IEnvironment environment;
 
@@ -70,6 +73,11 @@ public abstract class AbstractCreature implements ICreature {
 		this.environment = environment;
 
 		setPosition(position);
+	}
+
+	public AbstractCreature(IEnvironment environment, Point2D position, CreatureShape forme) {
+		this(environment, position);
+		this.forme = forme;
 	}
 	
 	/*public AbstractCreature(IEnvironment environment, Point2D position, double speed, double direction, Color color) {
@@ -119,6 +127,7 @@ public abstract class AbstractCreature implements ICreature {
 		return color;
 	}
 
+
 	@Override
 	public int getSize() {
 		return size;
@@ -127,6 +136,10 @@ public abstract class AbstractCreature implements ICreature {
 	@Override
 	public double getEnergy(){
 		return energy;
+	}
+
+	public void setForme(CreatureShape forme) {
+		this.forme = forme;
 	}
 	
 	@Override
@@ -256,27 +269,41 @@ public abstract class AbstractCreature implements ICreature {
 
 	@Override
 	public void paint(Graphics2D g2) {
-		//g2.fillOval((int)position.getX(), (int) position.getY(), 14, 14);
-		// center the point
-		g2.translate(position.getX(), position.getY());
-		// center the surrounding rectangle
-		g2.translate(-size / 2, -size / 2);
-		// center the arc
-		// rotate towards the direction of our vector
-		g2.rotate(-direction, size / 2, size / 2);
+		if(this.forme == CreatureShape.SQUARE) {
+			paintSquare(g2);
+		} else if(forme == CreatureShape.CIRCLE) {
+			paintCircle(g2);
+		} else {
+			//g2.fillOval((int)position.getX(), (int) position.getY(), 14, 14);
+			// center the point
+			g2.translate(position.getX(), position.getY());
+			// center the surrounding rectangle
+			g2.translate(-size / 2, -size / 2);
+			// center the arc
+			// rotate towards the direction of our vector
+			g2.rotate(-direction, size / 2, size / 2);
 
-		// useful for debugging
-		//g2.drawRect(0, 0, size, size);
+			// useful for debugging
+			//g2.drawRect(0, 0, size, size);
 
-		// set the color
+			// set the color
+			g2.setColor(color);
+			// we need to do PI - FOV since we want to mirror the arc
+			g2.fillArc(0, 0, size, size, (int) toDegrees(-fieldOfView / 2),
+					(int) toDegrees(fieldOfView));
+			
+			//g2.setColor(Color.BLACK);
+		}
+	}
+
+	private void paintSquare(Graphics2D g2) {
 		g2.setColor(color);
-		// we need to do PI - FOV since we want to mirror the arc
-		g2.fillArc(0, 0, size, size, (int) toDegrees(-fieldOfView / 2),
-				(int) toDegrees(fieldOfView));
-		
-		//g2.setColor(Color.BLACK);
-		
+		g2.fillRect((int)position.getX(),(int)position.getY(),size/2, size/2);
+	}
 
+	private void paintCircle(Graphics2D g2) {
+		g2.setColor(color);
+		g2.fillOval((int)position.getX(),(int)position.getY(), size/2, size/2);
 	}
 
 	// ----------------------------------------------------------------------------

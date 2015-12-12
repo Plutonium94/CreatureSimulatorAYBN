@@ -14,9 +14,8 @@ import java.util.logging.Logger;
 import java.io.File;
 import plug.IPlugin;
 import plug.PluginLoader;
-import creatures.IColorStrategy;
-import creatures.ICreature;
-import creatures.IEnvironment;
+import creatures.*;
+import creatures.visual.CreatureShape;
 
 public class CreaturePluginFactory {
 	
@@ -104,6 +103,11 @@ public class CreaturePluginFactory {
 
 	public <T extends ICreature> Collection<T> createCreatures(IEnvironment env, int count, 
 								IColorStrategy colorStrategy, Constructor<T> constructor) {
+		return createCreatures(env,count, CreatureShape.DEFAULT, colorStrategy, constructor);
+	}
+
+	public <T extends ICreature> Collection<T> createCreatures(IEnvironment env, int count, 
+								CreatureShape forme, IColorStrategy colorStrategy, Constructor<T> constructor) {
 		Collection<T> creatures = new ArrayList<T>();		
 		Dimension s = env.getSize();		
 		for (int i=0; i<count; i++) {	
@@ -118,6 +122,7 @@ public class CreaturePluginFactory {
 			T creature = null;
 			try {
 				creature = constructor.newInstance(env, new Point2D.Double(x,y), speed, direction, colorStrategy.getColor());
+				creature.setForme(forme);
 			} catch (Exception e) {
 				logger.info("calling constructor " + constructor + " failed with exception " + e.getLocalizedMessage());
 				e.printStackTrace();
@@ -126,5 +131,7 @@ public class CreaturePluginFactory {
 		}		
 		return creatures;
 	}
+
+
 
 }

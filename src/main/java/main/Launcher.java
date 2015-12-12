@@ -44,6 +44,7 @@ public class Launcher extends JFrame {
 	private Integer nombreDePointsDEnergie = null;
 	private IColorStrategy creatureColor = null;
 	private Integer creatureNumber = null;
+	private CreatureShape creatureShape = CreatureShape.DEFAULT;
 	
 	private PluginMenuItemBuilder menuBuilder;
 	private JMenuBar mb = new JMenuBar();	
@@ -64,7 +65,8 @@ public class Launcher extends JFrame {
 			this.creatureNumber = (Integer)map.get("creatureNumber");
 			String cc = (String)map.get("creatureColor");
 			this.creatureColor = (cc == null || cc.equals("hasard"))? new ColorCube(50): new SingleColorStrategy(cc);
-
+			String cs = ((String)map.get("creatureShape")).toUpperCase();
+			this.creatureShape = (cs == null)? CreatureShape.DEFAULT: (CreatureShape.valueOf(cs) == null)? CreatureShape.DEFAULT: CreatureShape.valueOf(cs);
 		}
 
 		factory = CreaturePluginFactory.getInstance();
@@ -116,7 +118,7 @@ public class Launcher extends JFrame {
 						}
 					}
 					simulator.clearCreatures();
-					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, (creatureNumber==null)? 10: creatureNumber.intValue(), creatureColor,currentConstructor);
+					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, (creatureNumber==null)? 10: creatureNumber.intValue(), creatureShape, creatureColor,currentConstructor);
 					simulator.addAllCreatures(creatures);
 					simulator.start();
 				}
@@ -209,6 +211,10 @@ public class Launcher extends JFrame {
 			if(arg.startsWith("cn_")) {
 				map.put("creatureNumber", Integer.parseInt(arg.split("_")[1]));
 			}
+			if(arg.startsWith("cs_")) {
+				map.put("creatureShape", arg.split("_")[1]);
+			}
+			
 			
 
 		}

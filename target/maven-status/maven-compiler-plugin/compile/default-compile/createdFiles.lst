@@ -23,6 +23,7 @@ creatures\CreatureBuilder.class
 creatures\ICreature.class
 creatures\IEnvironment.class
 creatures\visual\CreatureVisualizer$1.class
+creatures\visual\CreatureShape.class
 commons\Utils.class
 creatures\AbstractCreature.class
 creatures\visual\CreatureVisualizer$4.class
@@ -41,3 +42,4 @@ creatures\visual\CreatureSimulator$CreaturesNearbyPoint.class
 creatures\EnergySearchingCreature.class
 main\Launcher$3.class
 simulator\IActionable.class
+creatures\IDrawStrategy.class
