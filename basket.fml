@@ -1,0 +1,10 @@
+fmDom = FM( dom : (basket | normal);)
+
+fmTech = FM(tech : creatures [energyPoints];  creatures : creatureNumber creatureColor;
+			energyPoints : (ep_1 |  ep_5 | ep_2 | ep_10);
+			creatureNumber : (cn_2 | cn_1 | cn_5 | cn_9);
+			creatureColor : (cc_red | cc_blue | cc_hasard);
+			)
+
+
+regles = constraints(basket biimplies (cc_red and ep_2 and cn_2);)
