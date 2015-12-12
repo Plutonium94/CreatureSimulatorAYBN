@@ -3,6 +3,7 @@ main\Launcher$1.class
 plug\creatures\CreaturePluginFactory.class
 commons\Utils$1.class
 creatures\visual\CreatureVisualizer.class
+creatures\visual\SingleColorStrategy.class
 creatures\AbstractCreature$1.class
 simulator\ISimulationListener.class
 creatures\SmartCreature$CreaturesAroundCreature.class

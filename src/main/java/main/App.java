@@ -21,7 +21,7 @@ public class App
     	BufferedReader br = null;
     	String fichierALire = "";
     	try {
-    		br = new BufferedReader(new FileReader("superSimplePrototype.fml"));
+    		br = new BufferedReader(new FileReader("basket.fml"));
     		String ligne;
     		while((ligne = br.readLine()) != null) {
     			fichierALire += ligne;
@@ -32,11 +32,11 @@ public class App
     	}
 
     	int egalIndex = fichierALire.indexOf("=");
-    	String fmName = fichierALire.substring(0,egalIndex).trim();
+    	String fmName = "fmDom", fmTechName = "fmTech";
     	String FM = fichierALire;
 
     	
-    	String configName = "config1";
+    	String configName = "confDom";
     	
     	FamiliarInterpreter fi = FamiliarInterpreter.getInstance();
     	
@@ -63,15 +63,35 @@ public class App
 		        	System.out.println("Unselected features :"+fi.getUnselectedFeature(configName));
 	        	}
 	        } while (!s.equals("exit"));
-	        Collection<String> res = fi.getSelectedFeature(configName);
-	        for(String st : new String[]{"nEP_5", "nEP_10", "nEP_15"}) {
+	        String fmConfigDomName = "fmConfigDom";
+	        fi.eval(fmConfigDomName +" = asFM " + configName);
+	        
+	        String fmSimuName = "fmSimu";
+	        fi.eval(fmSimuName + " = aggregate { " + fmConfigDomName +" "+ fmTechName+ " } withMapping regles" );
+
+	        String configSimuName = "configSimu";
+	        fi.eval(configSimuName + " = configuration " + fmSimuName);
+
+	        String fmResName = "fmRes";
+	        fi.eval(fmResName + " = asFM " + configSimuName);
+
+	        Properties prop = new Properties();
+	        Collection<String> res = fi.getSelectedFeature(configSimuName);
+	        List<String> launcherMainArgsListe = new ArrayList<String>();
+	        for(String st : res) {
 	        	System.out.println("in for");
-	        	if(res.contains(st)) {
-	        		Launcher.main(new String[]{st.substring(4)});
-	        		break;
+	        	if(st.contains("_")) {
+	        		String[] splitValeur = st.split("_");
+	        		prop.setProperty(splitValeur[0],splitValeur[1]);
+	        		launcherMainArgsListe.add(st);
 	        	}
+
 	        }
-	        System.out.println("Grand resultat de Daniel " + res);
+
+	        System.out.println("Petit resultat de Daniel " + res);
+	        System.out.println("prop : " + prop);
+	        Launcher.main(launcherMainArgsListe.toArray(new String[launcherMainArgsListe.size()]));
+	        
 		} catch (FMEngineException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -3,3 +3,4 @@ target/
 myplugins/repository/
 .classpath
 .project
+*.log

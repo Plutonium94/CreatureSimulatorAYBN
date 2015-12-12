@@ -20,11 +20,8 @@ import javax.swing.JPanel;
 import plug.creatures.CreaturePluginFactory;
 import plug.creatures.PluginMenuItemBuilder;
 import simulator.*;
-import creatures.ICreature;
-import creatures.visual.ColorCube;
-import creatures.visual.CreatureInspector;
-import creatures.visual.CreatureSimulator;
-import creatures.visual.CreatureVisualizer;
+import creatures.*;
+import creatures.visual.*;
 
 /**
  * Just a simple test of the simulator.
@@ -43,7 +40,10 @@ public class Launcher extends JFrame {
 	private final CreatureVisualizer visualizer;
 	private final CreatureSimulator simulator;
 
+	/* Initialized by fml via main args */
 	private Integer nombreDePointsDEnergie = null;
+	private IColorStrategy creatureColor = null;
+	private Integer creatureNumber = null;
 	
 	private PluginMenuItemBuilder menuBuilder;
 	private JMenuBar mb = new JMenuBar();	
@@ -57,9 +57,15 @@ public class Launcher extends JFrame {
 	
 	
 	
-	public Launcher() {
+	public Launcher(Map<String,Object> map) {
 
+		if(map != null) {
+			this.nombreDePointsDEnergie = (Integer)map.get("nombreDePointsDEnergie");
+			this.creatureNumber = (Integer)map.get("creatureNumber");
+			String cc = (String)map.get("creatureColor");
+			this.creatureColor = (cc == null || cc.equals("hasard"))? new ColorCube(50): new SingleColorStrategy(cc);
 
+		}
 
 		factory = CreaturePluginFactory.getInstance();
 		
@@ -110,7 +116,7 @@ public class Launcher extends JFrame {
 						}
 					}
 					simulator.clearCreatures();
-					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, (nombreDePointsDEnergie ==null)?10: nombreDePointsDEnergie.intValue(), new ColorCube(50),currentConstructor);
+					Collection<? extends ICreature> creatures = factory.createCreatures(simulator, (creatureNumber==null)? 10: creatureNumber.intValue(), creatureColor,currentConstructor);
 					simulator.addAllCreatures(creatures);
 					simulator.start();
 				}
@@ -120,7 +126,7 @@ public class Launcher extends JFrame {
 		
 		add(buttons, BorderLayout.SOUTH);
 				
-		simulator = new CreatureSimulator(new Dimension(640, 480));	
+		simulator = (nombreDePointsDEnergie == null)?( new CreatureSimulator(new Dimension(640, 480))) : (new CreatureSimulator(new Dimension(640, 480), nombreDePointsDEnergie.intValue() ));	
 		simulator.setLaucher(this);
 		inspector = new CreatureInspector();
 		inspector.setFocusableWindowState(false);
@@ -190,12 +196,27 @@ public class Launcher extends JFrame {
 		double myMaxSpeed = 5;
 		CreaturePluginFactory.init(myMaxSpeed);
 
-		Launcher launcher = new Launcher();
-		if(args.length > 0) {
-			launcher.nombreDePointsDEnergie = Integer.parseInt(args[0]);
+		Launcher launcher = null;
+		Map<String,Object> map = new TreeMap<String,Object>();
+		for(String arg : args) {
+			if(arg.startsWith("ep_")) {
+				map.put("nombreDePointsDEnergie",Integer.parseInt(arg.split("_")[1]));
+			}
+			if(arg.startsWith("cc_")) {
+				System.out.println(Arrays.toString(arg.split("_")));
+				map.put("creatureColor",arg.split("_")[1]);
+			}
+			if(arg.startsWith("cn_")) {
+				map.put("creatureNumber", Integer.parseInt(arg.split("_")[1]));
+			}
+			
+
 		}
+		launcher = new Launcher(map);
 		launcher.setVisible(true);
 	}
+
+
 	
 }
 

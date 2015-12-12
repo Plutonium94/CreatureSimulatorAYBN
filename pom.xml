@@ -37,9 +37,7 @@
   <profile>
       <id>run</id>
       <build>
-         <!--<sourceDirectory>src</sourceDirectory>
-         <testSourceDirectory>test</testSourceDirectory>
-         <outputDirectory>bin</outputDirectory>-->
+         
         <defaultGoal>compile</defaultGoal>
         <plugins>
           <plugin>
@@ -62,6 +60,7 @@
                      also adding the project build directory -->
                 <classpath />
                 <argument>main.App</argument>
+                <!--<argument>2</argument>-->
               </arguments>   
             </configuration>
           </plugin>

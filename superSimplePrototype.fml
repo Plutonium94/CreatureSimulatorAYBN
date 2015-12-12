@@ -1,3 +1,4 @@
+
 fmSuperSimple = FM(technique : numberEnergyPoints;
 				numberEnergyPoints : (nEP_5 | nEP_10 | nEP_15);
 				)
