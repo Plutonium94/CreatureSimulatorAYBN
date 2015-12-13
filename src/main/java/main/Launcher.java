@@ -46,6 +46,7 @@ public class Launcher extends JFrame {
 	private Integer creatureNumber = null;
 	private CreatureShape creatureShape = CreatureShape.DEFAULT;
 	private String creatureType = null;
+	private Integer creatureMaxSpeed = null;
 	
 	private PluginMenuItemBuilder menuBuilder;
 	private JMenuBar mb = new JMenuBar();	
@@ -66,10 +67,19 @@ public class Launcher extends JFrame {
 			this.creatureNumber = (Integer)map.get("creatureNumber");
 			String cc = (String)map.get("creatureColor");
 			this.creatureColor = (cc == null || cc.equals("hasard"))? new ColorCube(50): new SingleColorStrategy(cc);
-			String cs = ((String)map.get("creatureShape")).toUpperCase();
-			this.creatureShape = (cs == null)? CreatureShape.DEFAULT: (CreatureShape.valueOf(cs) == null)? CreatureShape.DEFAULT: CreatureShape.valueOf(cs);
+			String cs = (String)map.get("creatureShape");
+			if(cs != null) {
+				cs = cs.toUpperCase();	
+				try {
+					this.creatureShape = CreatureShape.valueOf(cs);
+				} catch(IllegalArgumentException iae) {
+					this.creatureShape = CreatureShape.DEFAULT;
+				}
+			} else {
+				this.creatureShape = CreatureShape.DEFAULT;
+			}
 			this.creatureType = (String)map.get("creatureType");
-			
+			this.creatureNumber = (Integer)map.get("creatureMaxSpeed");
 			
 		}
 
@@ -204,7 +214,7 @@ public class Launcher extends JFrame {
 	public static void main(String args[]) {
 	    Logger.getLogger("plug").setLevel(Level.INFO);
 		double myMaxSpeed = 5;
-		CreaturePluginFactory.init(myMaxSpeed);
+		
 
 		Launcher launcher = null;
 		Map<String,Object> map = new TreeMap<String,Object>();
@@ -224,11 +234,15 @@ public class Launcher extends JFrame {
 			}
 			if(arg.startsWith("ct_")) {
 				map.put("creatureType", arg.split("_")[1]);
+			} if(arg.startsWith("cms_")) {
+				myMaxSpeed = Integer.parseInt(arg.split("_")[1]);
 			}
 			
 			
 
 		}
+		CreaturePluginFactory.init(myMaxSpeed);
+		
 		launcher = new Launcher(map);
 		launcher.setVisible(true);
 	}

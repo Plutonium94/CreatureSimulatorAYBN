@@ -1,12 +1,17 @@
-fmDom = FM( dom : (basket | normal);)
+fmDom = FM( dom : (basket | zombie | normal);)
 
-fmTech = FM(tech : creatures [energyPoints];  creatures : creatureNumber creatureColor;
+fmTech = FM(tech : creatures [energyPoints];  creatures : creatureNumber creatureColor [creatureMaxSpeed];
 			energyPoints : (ep_1 |  ep_5 | ep_2 | ep_10);
 			creatureNumber : (cn_2 | cn_1 | cn_5 | cn_9);
-			creatureColor : (cc_red | cc_blue | cc_hasard);
-			creatureShape : (cs_creature | cs_circle | cs_square);
+			creatureColor : (cc_red | cc_blue | cc_green | cc_gray | cc_hasard);
+			creatureShape : (cs_default | cs_circle | cs_square);
 			creatureType : (ct_BouncingCreature | ct_EnergySearchingCreature | ct_SmartCreature | ct_StupidCreature );
+			creatureMaxSpeed : (cms_5 | cms_3 | cms_2);
 			)
 
 
-regles = constraints(basket biimplies (cc_red and ep_2 and cn_1 and cs_circle and ct_BouncingCreature);)
+regles = constraints(basket biimplies (cc_red and ep_2 and cn_1 and cs_circle and ct_BouncingCreature);
+					zombie biimplies (cc_gray and cn_5 and ct_StupidCreature and cs_default and ep_1 and cms_2);
+					)
+
+					
