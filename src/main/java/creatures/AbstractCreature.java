@@ -269,7 +269,7 @@ public abstract class AbstractCreature implements ICreature {
 
 	@Override
 	public void paint(Graphics2D g2) {
-		if(this.forme == CreatureShape.SQUARE) {
+		if(forme == CreatureShape.SQUARE) {
 			paintSquare(g2);
 		} else if(forme == CreatureShape.CIRCLE) {
 			paintCircle(g2);

@@ -21,7 +21,7 @@ public class App
     	BufferedReader br = null;
     	String fichierALire = "";
     	try {
-    		br = new BufferedReader(new FileReader("basket.fml"));
+    		br = new BufferedReader(new FileReader("grandfml.fml"));
     		String ligne;
     		while((ligne = br.readLine()) != null) {
     			fichierALire += ligne;

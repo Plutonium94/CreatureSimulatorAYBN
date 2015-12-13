@@ -15,14 +15,3 @@ regles = constraints(
                      grand  biimplies (cc_hasard and ep_10 and cn_9 and cs_square and ct_SmartCreature);
                     )
 
-fmTotal = aggregate {fmDom fmTech} withMapping regles
-
-confTotal = configuration fmTotal
-
-select grand in confTotal
-
-fmSelectedDom = asFM confTotal
-
-
-
-
