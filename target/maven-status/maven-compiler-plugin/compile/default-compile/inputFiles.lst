@@ -11,11 +11,13 @@ c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\IE
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\SingleColorStrategy.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\EnergySearchingCreature.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\CreatureInspector.java
+c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\IDrawStrategy.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\SmartCreature.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\simulator\ISimulationListener.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\plug\creatures\CreaturePluginFactory.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\IColorStrategy.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\simulator\IActionable.java
+c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\CreatureShape.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\CreatureVisualizer.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\AbstractCreature.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\CreatureBuilder.java

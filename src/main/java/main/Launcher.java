@@ -45,6 +45,7 @@ public class Launcher extends JFrame {
 	private IColorStrategy creatureColor = null;
 	private Integer creatureNumber = null;
 	private CreatureShape creatureShape = CreatureShape.DEFAULT;
+	private String creatureType = null;
 	
 	private PluginMenuItemBuilder menuBuilder;
 	private JMenuBar mb = new JMenuBar();	
@@ -67,9 +68,16 @@ public class Launcher extends JFrame {
 			this.creatureColor = (cc == null || cc.equals("hasard"))? new ColorCube(50): new SingleColorStrategy(cc);
 			String cs = ((String)map.get("creatureShape")).toUpperCase();
 			this.creatureShape = (cs == null)? CreatureShape.DEFAULT: (CreatureShape.valueOf(cs) == null)? CreatureShape.DEFAULT: CreatureShape.valueOf(cs);
+			this.creatureType = (String)map.get("creatureType");
+			
+			
 		}
 
 		factory = CreaturePluginFactory.getInstance();
+		if(this.creatureType != null) {
+			currentConstructor = factory.getConstructorMap().get("creatures." + creatureType);
+		}
+
 		
 		conteneur.setLayout(new BoxLayout(conteneur, BoxLayout.Y_AXIS));
 		conteneur.add(label);
@@ -213,6 +221,9 @@ public class Launcher extends JFrame {
 			}
 			if(arg.startsWith("cs_")) {
 				map.put("creatureShape", arg.split("_")[1]);
+			}
+			if(arg.startsWith("ct_")) {
+				map.put("creatureType", arg.split("_")[1]);
 			}
 			
 			

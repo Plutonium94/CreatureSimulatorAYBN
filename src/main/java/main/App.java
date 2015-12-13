@@ -79,7 +79,6 @@ public class App
 	        Collection<String> res = fi.getSelectedFeature(configSimuName);
 	        List<String> launcherMainArgsListe = new ArrayList<String>();
 	        for(String st : res) {
-	        	System.out.println("in for");
 	        	if(st.contains("_")) {
 	        		String[] splitValeur = st.split("_");
 	        		prop.setProperty(splitValeur[0],splitValeur[1]);
