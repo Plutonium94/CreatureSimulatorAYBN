@@ -12,9 +12,9 @@ fmTech = FM(tech : creatures [energyPoints] [windowSize];  creatures : creatureN
 
 
 regles = constraints(
-                     basket biimplies (cc_red and ep_2 and cn_1 and cs_circle and ct_BouncingCreature);
-                     normal biimplies (cc_blue and ep_5 and cn_5 and cs_creature and ct_EnergySearchingCreature);
-                     grand  biimplies (cc_hasard and ep_10 and cn_12 and cs_square and ct_SmartCreature and ws_maximized);
+                     basket biimplies (cc_red and ep_2 and cn_1 and cs_circle and ct_BouncingCreature and cms_5);
+                     normal biimplies (cc_blue and ep_5 and cn_5 and cs_default and ct_EnergySearchingCreature and cms_5);
+                     grand  biimplies (cc_hasard and ep_10 and cn_12 and cs_square and ct_SmartCreature and ws_maximized and cms_5);
 					 zombie biimplies (cc_gray and cn_5 and ct_StupidCreature and cs_default and ep_1 and cms_1);
 
                     )

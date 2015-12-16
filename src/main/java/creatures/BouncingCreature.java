@@ -58,9 +58,9 @@ public class BouncingCreature extends AbstractCreature {
 			energySearch(nearestEnergyPointCoordinates);
 		}
 		else{
-		applyNoise();
-		move();
-	}
+			applyNoise();
+			move();
+		}
 	}
 
 	/**
