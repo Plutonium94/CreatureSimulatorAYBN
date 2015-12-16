@@ -47,7 +47,8 @@ public class App
 	    	fi.eval(configName+" = configuration "+fmName);
 	    	System.out.println("Instantiated FM : "+fmv.getSyntacticalRepresentation());
 	    	
-	    	
+
+	    	// Choix de scenario par l'utilisateur
 	    	
 	        Scanner scan = new Scanner(System.in);
 	        String s = "";
@@ -63,6 +64,16 @@ public class App
 		        	System.out.println("Unselected features :"+fi.getUnselectedFeature(configName));
 	        	}
 	        } while (!s.equals("exit"));
+
+	        // Obtenir nom du scenario 
+	        String scenario = "";
+	        for(String sc : fi.getSelectedFeature(configName)) {
+	        	if(sc.toUpperCase().equals(sc)) {
+	        		scenario = sc.toLowerCase();
+	        	}
+	        }
+
+
 	        String fmConfigDomName = "fmConfigDom";
 	        fi.eval(fmConfigDomName +" = asFM " + configName);
 	        
@@ -89,6 +100,14 @@ public class App
 
 	        System.out.println("Petit resultat de Daniel " + res);
 	        System.out.println("prop : " + prop);
+	        
+	        try {
+		        FileOutputStream fos = new FileOutputStream("src" + File.separator + "main" + File.separator + "resources" + File.separator + scenario + File.separator + "config.properties");
+		        prop.store(fos,null);
+		        fos.close();
+	        } catch(IOException ioe) {
+	        	ioe.printStackTrace();
+	        }
 	        Launcher.main(launcherMainArgsListe.toArray(new String[launcherMainArgsListe.size()]));
 	        
 		} catch (FMEngineException e) {

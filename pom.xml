@@ -67,5 +67,174 @@
         </plugins>
       </build>
     </profile>
+
+
+    <!-- Le scenario basket -->
+    <profile>
+      <id>basket</id>
+      <build>
+         
+        <defaultGoal>compile</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>compile</phase>
+              </execution>
+            </executions>
+            <configuration>
+               <!-- argLine>-Xms1000m -Xmx1000m -XX:MaxPermSize=2048m</argLine--> 
+              <executable>java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <!-- automatically creates the classpath using all project dependencies, 
+                     also adding the project build directory -->
+                <classpath />
+                <argument>main.Launcher</argument>
+                <argument>cc_red</argument>
+                <argument>ep_2</argument>
+                <argument>cn_1</argument>
+                <argument>cs_circle</argument>
+                <argument>ct_BouncingCreature</argument>
+                <argument>cms_5</argument>
+
+              </arguments>   
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- le scenario normal -->
+    <profile>
+      <id>normal</id>
+      <build>
+         
+        <defaultGoal>compile</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>compile</phase>
+              </execution>
+            </executions>
+            <configuration>
+               <!-- argLine>-Xms1000m -Xmx1000m -XX:MaxPermSize=2048m</argLine--> 
+              <executable>java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <!-- automatically creates the classpath using all project dependencies, 
+                     also adding the project build directory -->
+                <classpath />
+                <argument>main.Launcher</argument>
+                <argument>cc_blue</argument>
+                <argument>ep_5</argument>
+                <argument>cn_5</argument>
+                <argument>cs_default</argument>
+                <argument>ct_EnergySearchingCreature</argument>
+                <argument>cms_5</argument>
+
+              </arguments>   
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- le scenario grand -->
+    <profile>
+      <id>grand</id>
+      <build>
+         
+        <defaultGoal>compile</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>compile</phase>
+              </execution>
+            </executions>
+            <configuration>
+               <!-- argLine>-Xms1000m -Xmx1000m -XX:MaxPermSize=2048m</argLine--> 
+              <executable>java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <!-- automatically creates the classpath using all project dependencies, 
+                     also adding the project build directory -->
+                <classpath />
+                <argument>main.Launcher</argument>
+                <argument>cc_hasard</argument>
+                <argument>ep_10</argument>
+                <argument>cn_12</argument>
+                <argument>cs_square</argument>
+                <argument>ct_SmartCreature</argument>
+                <argument>cms_5</argument>
+                <argument>ws_maximized</argument>
+
+              </arguments>   
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+
+    <!-- le scenario zombie -->
+    <profile>
+      <id>zombie</id>
+      <build>
+         
+        <defaultGoal>compile</defaultGoal>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>compile</phase>
+              </execution>
+            </executions>
+            <configuration>
+               <!-- argLine>-Xms1000m -Xmx1000m -XX:MaxPermSize=2048m</argLine--> 
+              <executable>java</executable>
+              <arguments>
+                <argument>-classpath</argument>
+                <!-- automatically creates the classpath using all project dependencies, 
+                     also adding the project build directory -->
+                <classpath />
+                <argument>main.Launcher</argument>
+                <argument>cc_gray</argument>
+                <argument>ep_1</argument>
+                <argument>cn_5</argument>
+                <argument>cs_default</argument>
+                <argument>ct_StupidCreature</argument>
+                <argument>cms_1</argument>
+
+              </arguments>   
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+
   </profiles>  
 </project>
