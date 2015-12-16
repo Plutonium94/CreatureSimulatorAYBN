@@ -1,0 +1,14 @@
+zzdomaine = FM((basket | grand);)
+
+zztechnique = FM(numberEnergyPoints creatures; 
+				numberEnergyPoints: nEP1, nEP5, nEP10;
+				creatures: creatureNumber, creatureColor;
+				creatureNumber: (cn1 | cn5 | cn15);
+				creatureColor : (ccred | ccblue | ccgreen);
+				)
+
+cst = (basket implies (nEP1 and cn1 and ccred);
+		grand implies (nEP10 and cn15);
+		)
+
+unified = aggregate zz* with mapping cst;
