@@ -70,16 +70,24 @@ public class Launcher extends JFrame {
 			String cs = (String)map.get("creatureShape");
 			if(cs != null) {
 				cs = cs.toUpperCase();	
+				System.out.println("cs nest pas null il est : " + cs);
 				try {
 					this.creatureShape = CreatureShape.valueOf(cs);
+					System.out.println("cs nest pas null sa valueOf est : " + cs);
+
 				} catch(IllegalArgumentException iae) {
+					System.out.println("cs na pas de valueOf est : " + cs);
+
 					this.creatureShape = CreatureShape.DEFAULT;
+					throw new RuntimeException();
 				}
 			} else {
+					System.out.println("cs est nlll ");
+
 				this.creatureShape = CreatureShape.DEFAULT;
 			}
 			this.creatureType = (String)map.get("creatureType");
-			this.creatureNumber = (Integer)map.get("creatureMaxSpeed");
+			this.creatureMaxSpeed = (Integer)map.get("creatureMaxSpeed");
 			
 		}
 
@@ -218,6 +226,9 @@ public class Launcher extends JFrame {
 
 		Launcher launcher = null;
 		Map<String,Object> map = new TreeMap<String,Object>();
+
+		boolean windowMaximized = false;
+
 		for(String arg : args) {
 			if(arg.startsWith("ep_")) {
 				map.put("nombreDePointsDEnergie",Integer.parseInt(arg.split("_")[1]));
@@ -236,15 +247,26 @@ public class Launcher extends JFrame {
 				map.put("creatureType", arg.split("_")[1]);
 			} if(arg.startsWith("cms_")) {
 				myMaxSpeed = Integer.parseInt(arg.split("_")[1]);
-			}
+			} if(arg.startsWith("ws_")) {
+				if(arg.equals("ws_maximized")) {
+					windowMaximized = true;
+				}
+			}	
 			
 			
 
 		}
 		CreaturePluginFactory.init(myMaxSpeed);
 		
+		System.out.println("map map map map map map");
+		System.out.println(map);
+
 		launcher = new Launcher(map);
 		launcher.setVisible(true);
+
+		if(windowMaximized) {
+			launcher.setExtendedState(launcher.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		}
 	}
 
 

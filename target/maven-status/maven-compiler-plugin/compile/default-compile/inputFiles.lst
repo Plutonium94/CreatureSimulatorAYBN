@@ -4,6 +4,7 @@ c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\plug\creatur
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\commons\Utils.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\plug\PluginLoader.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\visual\IDrawable.java
+c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\DrawingSector.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\main\App.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\visual\Visualizer.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\simulator\EnergyPoint.java
@@ -18,9 +19,11 @@ c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\plug\creatur
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\IColorStrategy.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\simulator\IActionable.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\CreatureShape.java
+c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\DrawingSquare.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\CreatureVisualizer.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\AbstractCreature.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\CreatureBuilder.java
+c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\visual\DrawingCircle.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\creatures\BouncingCreature.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\main\Launcher.java
 c:\Users\user\Documents\M1_IFI_MBDS\GLog\PremierRendu\src\main\java\plug\IPlugin.java

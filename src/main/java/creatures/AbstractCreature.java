@@ -269,31 +269,13 @@ public abstract class AbstractCreature implements ICreature {
 
 	@Override
 	public void paint(Graphics2D g2) {
-		if(forme == CreatureShape.SQUARE) {
-			paintSquare(g2);
-		} else if(forme == CreatureShape.CIRCLE) {
-			paintCircle(g2);
-		} else {
-			//g2.fillOval((int)position.getX(), (int) position.getY(), 14, 14);
-			// center the point
-			g2.translate(position.getX(), position.getY());
-			// center the surrounding rectangle
-			g2.translate(-size / 2, -size / 2);
-			// center the arc
-			// rotate towards the direction of our vector
-			g2.rotate(-direction, size / 2, size / 2);
-
-			// useful for debugging
-			//g2.drawRect(0, 0, size, size);
-
-			// set the color
-			g2.setColor(color);
-			// we need to do PI - FOV since we want to mirror the arc
-			g2.fillArc(0, 0, size, size, (int) toDegrees(-fieldOfView / 2),
-					(int) toDegrees(fieldOfView));
-			
-			//g2.setColor(Color.BLACK);
+		IDrawStrategy ids = null;
+		switch(forme) {
+			case SQUARE: ids = new DrawingSquare(); break;
+			case CIRCLE: ids = new DrawingCircle(); break;
+			default : ids = new DrawingSector(); break;
 		}
+		ids.paint(this,g2);
 	}
 
 	private void paintSquare(Graphics2D g2) {
